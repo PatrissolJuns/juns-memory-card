@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './CardItem.css';
+import './CardItem.scss';
 import {ThemeContext} from "../../../Settings/config";
 
 class CardItem extends Component {
@@ -54,7 +54,7 @@ export default CardItem;
 
 /*
 import React, {Component} from 'react';
-import './CardItem.css';
+import './CardItem.scss';
 import {ThemeContext} from "../../../Settings/config";
 
 class CardItem extends Component {

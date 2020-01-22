@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Timer.css';
+import './Timer.scss';
 import PropTypes from 'prop-types';
 import { MAX_TIMER} from "../../Settings/config";
 
@@ -35,7 +35,6 @@ class Timer extends Component {
     clearInterval(this.timerID);
   }
 
-
   static displayNumber(number) {
     return number > 9 ? `${number}` : `0${number}`;
   }
@@ -57,9 +56,8 @@ class Timer extends Component {
     return (
       <div className="Timer">
         <div
-            className={this.state.currentTimer === this.state.timer ? "progress finished" : "progress"}
+            className={this.state.currentTimer === this.state.timer ? "Progress Finished" : "Progress"}
             style={style}>
-
         </div>
         <strong>{ this.displayTimer() }</strong>
       </div>

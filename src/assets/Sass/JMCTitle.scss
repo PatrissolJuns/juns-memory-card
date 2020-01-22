@@ -1,0 +1,24 @@
+.jmc-title {
+  h2 {
+    font-weight: bold;
+    color: #f8eca6;
+    line-height: 66px;
+    font-size: 60px;
+    text-align: center;
+    @include default_background();
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &.jmc-size-small h2{
+    line-height: 36px;
+    font-size: 30px;
+  }
+  span {
+    border: #f0e7b5 solid 1px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

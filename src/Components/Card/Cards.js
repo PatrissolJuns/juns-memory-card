@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Cards.css';
+import '../../assets/Sass/Cards.scss';
 import CardItem from "./CardItem/CardItem";
 
 class Cards extends Component {
@@ -98,7 +98,6 @@ class Cards extends Component {
           <h1>Scored: {this.state.scored} and Clicked time : {this.state.clicked}</h1>
           <br/>
           <div className={"cards"}>
-
             {
               this.state.cards.map(card => {
                 return <CardItem

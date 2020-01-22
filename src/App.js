@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from "./Components/Header/Header";
-import Timer from "./Components/Timer/Timer";
+import './assets/Sass/base.scss';
+import './App.scss';
+import Header from "./Components/Header";
 import { ThemeContext, Theme } from './Settings/config';
-import Cards from "./Components/Card/Cards";
+import JMCContainer from "./Components/JMCContainer";
+import HomeScreen from "./Components/HomeScreen";
 
 class App extends Component {
 
@@ -11,6 +12,8 @@ class App extends Component {
     super(props);
     this.state = {
       theme: Theme.onePiece,
+      scored: 0,
+      clicked: 0
     }
   }
 
@@ -31,13 +34,25 @@ class App extends Component {
     return newData;
   }
 
+  endOfGame = (scored, clicked) => {
+    this.state({scored: scored, clicked: clicked, result: scored !== 4})
+  }
+
+  onUpdateCounter = (scored, clicked) => {
+
+  }
+
   render() {
     return (
       <>
         <ThemeContext.Provider value={this.state.theme}>
           <Header />
-          <Timer timer={10} />
-          <Cards cards={this.parseDataToMatrix(this.state.theme.data)}/>
+          <JMCContainer>
+            <HomeScreen />
+          </JMCContainer>
+          {/*<Timer onEndOfGame={this.endOfGame} timer={10} />
+          <Cards onEndOfGame={this.endOfGame} cards={this.parseDataToMatrix(this.state.theme.data)}/>
+          <EndSingleParty modalShowDefault={true} result={false} />*/}
         </ThemeContext.Provider>
       </>
     );

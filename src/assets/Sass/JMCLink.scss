@@ -1,0 +1,29 @@
+.jmc-link {
+  /*position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-top: -56px;*/
+
+  a {
+    width: 191px;
+    background: #fcfcfc;
+    padding: 9px 0px;
+    color: #000;
+    font-size: 17px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all .4s ease-in;
+
+    &:hover {
+      background-image: linear-gradient(to bottom, #bc883d, #f5e47b, #bc883d);
+      color: #000;
+      transition: all .4s ease-in;
+      border-radius: 20px;
+    }
+  }
+}
+

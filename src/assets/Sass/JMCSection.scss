@@ -1,0 +1,58 @@
+.jmc-section {
+
+  .jmc-section-content {
+    position: inherit;
+    background-image: linear-gradient(to right, #bc883d, #f5e47b, #bc883d);
+    border-radius: 30px;
+    margin: 0 80px;
+    padding: 30px 40px;
+  }
+
+  .test_box {
+    .jons {
+      text-align: left;
+
+      h4 {
+        font-size: 40px;
+        color: #1b0905;
+        line-height: 50px;
+        display: inline-block;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      figure {
+        margin: 0;
+      }
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 28px;
+      color: #1b0905;
+      text-align: left;
+      padding: 20px 0;
+    }
+  }
+
+  .read_more {
+    width: 191px;
+    background: #1f0b04;
+    padding: 9px 0px;
+    color: #f3e179;
+    font-size: 17px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all .4s ease-in;
+    float: left;
+
+    &:hover {
+      background: #fff;
+      color: #1f0b04 !important;
+      transition: all .4s ease-in;
+      border-radius: 20px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.header {
+    //background: transparent;
+    background: #451608;
+    //padding: 35px 0px;
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    height: $jmc-header-height;
+
+    #sidebarCollapse {
+        background: transparent;
+        padding: 0;
+        border: none;
+    }
+
+    .menu_iconb {
+        background-image: linear-gradient(to bottom, #bc883d, #f5e47b, #bc883d);
+        padding: 9px 38px;
+        border-radius: 20px;
+        margin-right: 30px;
+    }
+}
+
+.logo a {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 40px;
+}
+
+
+.right_header_info {
+    width: 100%;
+    float: left;
+    padding: 8px 0 0;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        float: right;
+
+        li {
+            display: inline;
+            font-size: 18px;
+            margin-left: 20px;
+        }
+    }
+}
+

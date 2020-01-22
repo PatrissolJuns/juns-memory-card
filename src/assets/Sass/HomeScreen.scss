@@ -1,0 +1,22 @@
+ul.jmc-home-list li {
+  padding-bottom: 6px;
+  display: block;
+  color: #3e7f21;
+  position: relative;
+
+  a:hover {
+    color: #282828;
+    font-weight: bold;
+  }
+
+  /*a {
+    display: block;
+    color: #888;
+    font-size: 17px;
+    line-height: 21px;
+
+    &:hover {
+      color: #f5e47b;
+    }
+  }*/
+}

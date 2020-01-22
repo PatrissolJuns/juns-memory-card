@@ -1,0 +1,19 @@
+@mixin jmc_transform($value) {
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -ms-transform: $value;
+  -o-transform: $value;
+  transform: $value;
+}
+
+@mixin jmc_transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+@mixin default_background() {
+  background-image: linear-gradient(to bottom, $jmc-primary, $jmc-secondary, $jmc-primary);
+}

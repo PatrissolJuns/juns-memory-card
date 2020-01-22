@@ -7,12 +7,12 @@
     border: 1px solid gray;
 }
 
-.Timer .progress {
+.Timer .Progress {
     background: #2770b0;
     width: 0%;
 }
 
-.Timer .progress.finished {
+.Timer .Progress.Finished {
     background: green;
     width: 100%;
 }
