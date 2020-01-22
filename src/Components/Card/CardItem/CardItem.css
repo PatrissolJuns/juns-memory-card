@@ -1,0 +1,23 @@
+.card-item{
+    width: 200px;
+    height: 200px;
+    transition: 400ms;
+    background-color: white;
+    transform: rotateY(180deg);
+    /*background-image: url("https://i.postimg.cc/dVsJ1yCC/one-piece-couv.png");*/
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    cursor: pointer;
+    display: block;
+    margin: 10px;
+}
+
+.card-item.active {
+    /*background-image: url("https://www.clipartkey.com/mpngs/m/244-2440924_tony-tony-chopper-chopper-one-piece-wallpaper-hd.png") ;*/
+    transform: rotateY(0deg);
+}
+
+.card-item.hide {
+    opacity: 0;
+}
