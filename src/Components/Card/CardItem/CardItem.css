@@ -7,7 +7,7 @@
     /*background-image: url("https://i.postimg.cc/dVsJ1yCC/one-piece-couv.png");*/
     background-position: center;
     background-size: cover;
-    opacity: 1;
+    /*opacity: 1;*/
     cursor: pointer;
     display: block;
     margin: 10px;
@@ -19,5 +19,5 @@
 }
 
 .card-item.hide {
-    opacity: 0;
+    visibility: hidden;
 }

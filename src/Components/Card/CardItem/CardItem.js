@@ -14,9 +14,9 @@ class CardItem extends Component {
   }
 
 
-  componentWillUpdate(prevProps, prevState) {
+  /*componentWillUpdate(prevProps, prevState) {
     console.log('[CardItem.JS] this.state.active = ',prevProps.active, ' active = ', this.props.active);
-  }
+  }*/
 
 
   render() {
@@ -29,7 +29,7 @@ class CardItem extends Component {
     if(!this.props.shouldDisplay) {
       classes.push('hide');
     }
-    if(this.props.id === 2) console.log('item = ', this.props);
+    // if(this.props.id === 2) console.log('item = ', this.props);
 
     if(this.props.active) {
       classes.push('active');

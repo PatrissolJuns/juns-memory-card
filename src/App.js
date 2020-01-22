@@ -14,6 +14,22 @@ class App extends Component {
     }
   }
 
+  // min and max included
+  getRandomNumber = (min = 0, max = 10) => Math.floor(Math.random() * (max - min + 1) + min)
+
+  parseDataToMatrix = data => {
+    if(data.length % 2 !== 0) {
+      throw new Error("data must be a multiple of 2");
+    }
+    let newData = [...data];
+    data.forEach((d, index) => {
+      let pos = this.getRandomNumber(0, data.length - 1);
+      while(pos === index ) pos = this.getRandomNumber(0, data.length - 1);
+      newData.splice(pos, 0, d);
+    });
+
+    return newData;
+  }
 
   render() {
     return (
@@ -21,7 +37,7 @@ class App extends Component {
         <ThemeContext.Provider value={this.state.theme}>
           <Header />
           <Timer timer={10} />
-          <Cards cards={this.state.theme.data}/>
+          <Cards cards={this.parseDataToMatrix(this.state.theme.data)}/>
         </ThemeContext.Provider>
       </>
     );
