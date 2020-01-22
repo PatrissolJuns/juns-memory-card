@@ -9,7 +9,5 @@ export const onePiece = [
   // "https://i.postimg.cc/Lsy5RV0h/6422ec72d93b9602e76b04bcc2c916db.jpg",
   // "https://i.postimg.cc/664qJnV5/84b2650a22d095062f36b964cf097f24.png",
   // "https://i.postimg.cc/Yqc9p08N/a796dbc061c028b827fdbf3ecd9e30b6.jpg",
-  // "https://i.postimg.cc/q7Bq9Fw9/by-melonciutus-strong-manga-mastodon-big-mom-the-four-empero.jpg",
-  // "https://i.postimg.cc/htctdYkf/244-2440924-tony-tony-chopper-chopper-one-piece-wallpaper-hd.png",
   // "https://i.postimg.cc/0yn2dfvZ/one-piece-sketch-usopp-by-lnearmellomatt-jpg-token-ey-J0e-XAi-Oi-J.jpg"
 ];
