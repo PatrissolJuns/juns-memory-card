@@ -1,0 +1,29 @@
+.Timer {
+    display: flex;
+    color: white;
+    height: 20px;
+    text-align: center;
+    background: #f1ecec;
+    border: 1px solid gray;
+}
+
+.Timer .progress {
+    background: #2770b0;
+    width: 0%;
+}
+
+.Timer .progress.finished {
+    background: green;
+    width: 100%;
+}
+
+.Timer strong {
+    color: black;
+    position: absolute;
+    left: 50%;
+}
+@keyframes timer {
+    100% {
+        width: 100%;
+    }
+}
