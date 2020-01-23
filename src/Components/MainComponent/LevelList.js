@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import JMCTitle from "../UIElements/JMCTitle";
-import StageItem from "./StageItem";
+import LevelItem from "./LevelItem";
 
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import JMCCard from "../UIElements/JMCCard";
 import {Link} from "react-router-dom";
 
-const StageList = props => {
+const LevelList = props => {
 
-  const isPlayAble = stage => stage.id === 0;
-  console.log('props.stageList = ',props.stageList);
+  const isPlayAble = level => level.id === 0;
+  console.log('props.levelList = ',props.levelList);
 
   const anotherSlide = (data, isPlayAble) => {
     return (
@@ -38,7 +38,7 @@ const StageList = props => {
               <JMCTitle
                   displayPaddingBottom={true}
                   paddingButtonTitle={"pb-2"}
-                  title="Select a stage to play"
+                  title="Select a level to play"
                   underlined={false}
               />
             </div>
@@ -49,33 +49,33 @@ const StageList = props => {
               <CarouselProvider
                   naturalSlideWidth={500}
                   naturalSlideHeight={500}
-                  totalSlides={props.stageList.length}
+                  totalSlides={props.levelList.length}
                   visibleSlides={3}
               >
                 <Slider>
                   {
-                    props.stageList.map((stage, index) => {
+                    props.levelList.map((level, index) => {
                       return (
                           <Slide key={index} index={index}>
                             <Link to={"/"}>
-                              <StageItem
-                                  name={stage.name}
-                                  stageImageUrl={stage.stageImageUrl}
-                                  scored={stage.scored}
-                                  id={stage.id}
-                                  status={stage.status}
-                                  playAble={isPlayAble(stage)}
-                                  clicked={stage.clicked}
+                              <LevelItem
+                                  name={level.name}
+                                  levelImageUrl={level.levelImageUrl}
+                                  scored={level.scored}
+                                  id={level.id}
+                                  status={level.status}
+                                  playAble={isPlayAble(level)}
+                                  clicked={level.clicked}
                               />
                             </Link>
                           </Slide>
                       )
                     })
                   }
-                  {/*<Slide tag="a" index={0}>{stageTmp(props.stageList, isPlayAble)[0]}</Slide>
-                  <Slide tag="a" index={1}>{stageTmp(props.stageList, isPlayAble)[1]}</Slide>
-                  <Slide tag="a" index={2}>{stageTmp(props.stageList, isPlayAble)[2]}</Slide>
-                  <Slide tag="a" index={3}>{stageTmp(props.stageList, isPlayAble)[3]}</Slide>*/}
+                  {/*<Slide tag="a" index={0}>{levelTmp(props.levelList, isPlayAble)[0]}</Slide>
+                  <Slide tag="a" index={1}>{levelTmp(props.levelList, isPlayAble)[1]}</Slide>
+                  <Slide tag="a" index={2}>{levelTmp(props.levelList, isPlayAble)[2]}</Slide>
+                  <Slide tag="a" index={3}>{levelTmp(props.levelList, isPlayAble)[3]}</Slide>*/}
                 </Slider>
                 <ButtonBack>
                   <a className="jmc-arrow jmc-arrow-prev right-100" href="javascript: void(0)">
@@ -105,7 +105,7 @@ const StageList = props => {
               <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
               <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
             </Carousel>*/}
-            {/*{stageTmp(props.stageList, isPlayAble).slice(0, 3)}*/}
+            {/*{levelTmp(props.levelList, isPlayAble).slice(0, 3)}*/}
             {/*<JMCCard
                 imageUrl={"https://i.postimg.cc/dVsJ1yCC/one-piece-couv.png"}
                 marginBottom={' '}
@@ -116,11 +116,11 @@ const StageList = props => {
   );
 };
 
-StageList.propTypes = {
-  stageList: PropTypes.arrayOf(PropTypes.shape({
+LevelList.propTypes = {
+  levelList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     difficulty: PropTypes.node.isRequired,
-    stageImageUrl: PropTypes.string.isRequired,
+    levelImageUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     clicked: PropTypes.number.isRequired,
     scored: PropTypes.number.isRequired,
@@ -128,17 +128,17 @@ StageList.propTypes = {
   })),
 };
 
-export default StageList;
+export default LevelList;
 
 /*
-const stageTmp = (stageList, isPlayAble) => stageList.map(stage => {
-  return <StageItem
-      name={stage.name}
-      stageImageUrl={stage.stageImageUrl}
-      scored={stage.scored}
-      id={stage.id}
-      status={stage.status}
-      playAble={isPlayAble(stage)}
-      clicked={stage.clicked}
+const levelTmp = (levelList, isPlayAble) => levelList.map(level => {
+  return <LevelItem
+      name={level.name}
+      levelImageUrl={level.levelImageUrl}
+      scored={level.scored}
+      id={level.id}
+      status={level.status}
+      playAble={isPlayAble(level)}
+      clicked={level.clicked}
   />
 });*/

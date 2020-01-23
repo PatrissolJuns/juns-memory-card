@@ -2,31 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import JMCCard from "../UIElements/JMCCard";
 
-const StageItem = ({
+const LevelItem = ({
                      id,
                      difficulty,
-                     stageImageUrl,
+                     levelImageUrl,
                      name,
                      clicked,
                      scored,
                      status,
                      playAble,
-                     // clickedOnStageItem,
+                     // clickedOnLevelItem,
                      ...props}) => {
 
   const t = "col-md-12";
   return (
-      <div className={"jmc-stage-item"}>
+      <div className={"jmc-level-item"}>
         {playAble
           ? <JMCCard
-                imageUrl={stageImageUrl}
+                imageUrl={levelImageUrl}
                 withButton={true}
                 buttonName={"Play"}
                 colProperty={t}
                 textTop={name}
             />
           : <JMCCard
-                imageUrl={stageImageUrl}
+                imageUrl={levelImageUrl}
                 withButton={false}
                 colProperty={t}
                 textTop={name}
@@ -36,18 +36,18 @@ const StageItem = ({
   );
 };
 
-StageItem.propTypes = {
+LevelItem.propTypes = {
   id: PropTypes.number.isRequired,
   difficulty: PropTypes.node.isRequired,
-  stageImageUrl: PropTypes.string.isRequired,
+  levelImageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   clicked: PropTypes.number.isRequired,
   scored: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   playAble: PropTypes.bool.isRequired,
-  // clickedOnStageItem: PropTypes.func.isRequired,
+  // clickedOnLevelItem: PropTypes.func.isRequired,
 };
 
-export default StageItem;
+export default LevelItem;
 
-// onClick={clickedOnStageItem(id)}
+// onClick={clickedOnLevelItem(id)}

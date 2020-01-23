@@ -4,14 +4,14 @@ import JMCCard from "../../UIElements/JMCCard";
 
 const CardItem = ({
                     id,
-                    stageImageUrl,
+                    levelImageUrl,
                     imageUrl,
                     shouldDisplay,
                     active,
                     clickedOnCardItem,
                     ...props}) => {
     /*let style = {
-      backgroundImage: `url("${stageImageUrl})"`
+      backgroundImage: `url("${levelImageUrl})"`
     };*/
     
     let classes = ["jmc-card-item p-2"];
@@ -28,7 +28,7 @@ const CardItem = ({
 
     return (
         <JMCCard
-            imageUrl={classes.includes('active') ? imageUrl : stageImageUrl}
+            imageUrl={classes.includes('active') ? imageUrl : levelImageUrl}
             withButton={false}
             colProperty={' '}
             addClass={classes.join(' ')}
@@ -47,7 +47,7 @@ const CardItem = ({
 
 CardItem.propTypes = {
   id: PropTypes.number.isRequired,
-  stageImageUrl: PropTypes.string.isRequired,
+  levelImageUrl: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,

@@ -23,17 +23,6 @@ class App extends Component {
     }
   }
 
-
-
-
-  endOfGame = (scored, clicked) => {
-    this.state({scored: scored, clicked: clicked, result: scored !== 4})
-  }
-
-  onUpdateCounter = (scored, clicked) => {
-
-  }
-
   render() {
     return (
         <>
@@ -50,11 +39,11 @@ class App extends Component {
                     <h1>TOPICS </h1>
                     {/*<Link to="/">Home</Link>*/}
                   </Route>
-                  <Route path="/stage-list">
-                    <MainComponent shouldDisplayStageList={true} />
+                  <Route path="/level-list">
+                    <MainComponent shouldDisplayLevelList={true} />
                   </Route>
-                  <Route path="/play/stage/:stageId">
-                    <MainComponent shouldDisplayStageList={false} />
+                  <Route path="/play/level/:levelId">
+                    <MainComponent shouldDisplayLevelList={false} />
                   </Route>
                   <Redirect to="/" />
                 </Switch>

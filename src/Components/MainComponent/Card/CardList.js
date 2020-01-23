@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardItem from "./CardItem";
 
-const CardList = ({cardList, stageImageUrl, clickedOnCardItem, ...props}) => {
+const CardList = ({cardList, levelImageUrl, clickedOnCardItem, ...props}) => {
   return (
       <div className={"row jmc-card-list max-width"}>
       {cardList.map((card, index) => {
         return <CardItem
                   key={index}
                   id={card.id}
-                  stageImageUrl={stageImageUrl}
+                  levelImageUrl={levelImageUrl}
                   imageUrl={card.imageUrl}
                   shouldDisplay={card.shouldDisplay}
                   active={card.active}
@@ -23,7 +23,7 @@ const CardList = ({cardList, stageImageUrl, clickedOnCardItem, ...props}) => {
 
 CardList.propTypes = {
   cardList: PropTypes.array.isRequired,
-  stageImageUrl: PropTypes.string.isRequired,
+  levelImageUrl: PropTypes.string.isRequired,
   clickedOnCardItem: PropTypes.func.isRequired,
 };
 

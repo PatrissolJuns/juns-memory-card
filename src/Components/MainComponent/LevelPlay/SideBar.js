@@ -5,7 +5,7 @@ const SideBar = props => {
   return (
       <div className={"jmc-sidebar"}>
         <ul className="list-unstyled components">
-          <li><p>{props.stageName}</p></li>
+          <li><p>{props.levelName}</p></li>
           <li><p>Score: &nbsp; {props.scored}</p></li>
           <li><p>Clicked: &nbsp; {props.clicked}</p></li>
           <li><p>Difficulty: &nbsp; {props.difficulty}</p></li>
@@ -17,7 +17,7 @@ const SideBar = props => {
 SideBar.propTypes = {
   scored: PropTypes.number.isRequired,
   clicked: PropTypes.number.isRequired,
-  stageName: PropTypes.string.isRequired,
+  levelName: PropTypes.string.isRequired,
   difficulty: PropTypes.number.isRequired
 };
 

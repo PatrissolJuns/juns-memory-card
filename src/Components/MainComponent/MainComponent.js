@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {RUNNING, Theme, UNREACHED} from "./../../Settings/config";
-import StageList from "./StageList";
-import StagePlay from "./StagePlay/StagePlay";
+import LevelList from "./LevelList";
+import LevelPlay from "./LevelPlay/LevelPlay";
 import { withRouter } from "react-router";
 
 class MainComponent extends Component {
@@ -10,51 +10,51 @@ class MainComponent extends Component {
   constructor(props) {
     super(props);
 
-    let {data, stageImages} = Theme.onePiece;
+    let {data, levelImages} = Theme.onePiece;
 
     console.log('this.props = ',props);
-    let stageId = 0;
-    if(!props.shouldDisplayStageList) {
-      stageId = Number(props.match.params.stageId);
+    let levelId = 0;
+    if(!props.shouldDisplayLevelList && props.match.params.hasOwnProperty('levelId')) {
+      levelId = Number(props.match.params.levelId);
       /*console.log('ma = ',props.match);
-      console.log('ma = ',props.match.params.stageId);*/
+      console.log('ma = ',props.match.params.levelId);*/
     }
 
-    stageImages = this.getStageListData(data, stageImages);
+    levelImages = this.getLevelListData(data, levelImages);
 
     this.state = {
       theme: Theme.onePiece,
-      stageListData: stageImages,
-      stagePlayData: this.getStagePlayData(stageImages[stageId]),
+      levelListData: levelImages,
+      levelPlayData: this.getLevelPlayData(levelImages[levelId]),
       generalScore: 0,
       generalClicked: 0
     }
   }
 
   componentDidMount() {
-    let {data, stageImages} = this.state.theme;
+    let {data, levelImages} = this.state.theme;
     // console.log('data = ',data);
-    stageImages = this.getStageListData(data, stageImages);
-    // console.log('stageImages = ',stageImages);
-    let stagePlayData = this.getStagePlayData(stageImages[0]);
-    // console.log('stagePlayData = ',stagePlayData);
+    levelImages = this.getLevelListData(data, levelImages);
+    // console.log('levelImages = ',levelImages);
+    let levelPlayData = this.getLevelPlayData(levelImages[0]);
+    // console.log('levelPlayData = ',levelPlayData);
 
   }
   // min and max included
   getRandomNumber = (min = 0, max = 10) => Math.floor(Math.random() * (max - min + 1) + min);
 
-  getStageListData = (data, stageImages) => stageImages.map((item, index) => ({
+  getLevelListData = (data, levelImages) => levelImages.map((item, index) => ({
     id: index,
     difficulty: this.getDifficulty(index),
-    stageImageUrl: item,
-    name: `Stage ${index}`,
+    levelImageUrl: item,
+    name: `Level ${index}`,
     clicked: 0,
     scored: 0,
     status: UNREACHED,
     data: this.parseDataToMatrix(data, this.getDifficulty(index))
   }));
 
-  getStagePlayData = data => ({
+  getLevelPlayData = data => ({
     ...data,
     status: RUNNING,
     timer: this.getTimer(data.difficulty)
@@ -83,20 +83,20 @@ class MainComponent extends Component {
   }
 
   render() {
-    // const result = this.props.shouldDisplayStageList ? <p>Stage List Component</p> : <p>Stage Play</p>;
+    // const result = this.props.shouldDisplayLevelList ? <p>Level List Component</p> : <p>Level Play</p>;
     return (
         <>
-        {this.props.shouldDisplayStageList
-            ? <StageList
-                stageList={this.state.stageListData}
+        {this.props.shouldDisplayLevelList
+            ? <LevelList
+                levelList={this.state.levelListData}
               />
-            : <StagePlay
-                id={this.state.stagePlayData.id}
-                difficulty={this.state.stagePlayData.difficulty}
-                stageImageUrl={this.state.stagePlayData.stageImageUrl}
-                name={this.state.stagePlayData.name}
-                data={this.state.stagePlayData.data}
-                timer={this.state.stagePlayData.timer}
+            : <LevelPlay
+                id={this.state.levelPlayData.id}
+                difficulty={this.state.levelPlayData.difficulty}
+                levelImageUrl={this.state.levelPlayData.levelImageUrl}
+                name={this.state.levelPlayData.name}
+                data={this.state.levelPlayData.data}
+                timer={this.state.levelPlayData.timer}
             />
         }
         </>
@@ -105,8 +105,8 @@ class MainComponent extends Component {
 }
 
 MainComponent.propTypes = {
-  shouldDisplayStageList: PropTypes.bool,
-  stageToDisplay: PropTypes.number,
+  shouldDisplayLevelList: PropTypes.bool,
+  levelToDisplay: PropTypes.number,
 };
 
 export default withRouter(MainComponent);

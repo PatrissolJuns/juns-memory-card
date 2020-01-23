@@ -25,7 +25,7 @@ const JMCCard = ({
           style={cardAddStyle}
       >
         <div className={`game_box ${paddingGameBox}`}>
-          <p className={"jmc-stage-item-name"}>{textTop}</p>
+          <p className={"jmc-level-item-name"}>{textTop}</p>
           <figure style={style}> </figure>
         </div>
         {

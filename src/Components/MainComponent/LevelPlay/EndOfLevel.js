@@ -5,16 +5,16 @@ import JMCTitle from "../../UIElements/JMCTitle";
 import IMG from './../../../assets/images/jons_img1.png';
 import {FAILED, SUCCEED} from "../../../Settings/config";
 
-const EndOfStage = ({
+const EndOfLevel = ({
                       scored,
                       clicked,
                       timer,
                       leftTime,
                       decision,
-                      nextStageLink,
+                      nextLevelLink,
                       ...props}) => {
   return (
-      <div className={"jmc-end-of-stage"}>
+      <div className={"jmc-end-of-level"}>
         <JMCSection>
           <div className="col-md-12">
             <JMCTitle title={"Result"} />
@@ -28,8 +28,8 @@ const EndOfStage = ({
               <p>Clicked time: &nbsp; {clicked}</p>
               <p>Timer: &nbsp; {timer}</p>
               <p>Your time: &nbsp; {timer - leftTime}</p>
-              <a className="read_more" href={nextStageLink}>
-                {decision === SUCCEED ? "Next stage" : "Retry"}
+              <a className="read_more" href={nextLevelLink}>
+                {decision === SUCCEED ? "Next level" : "Retry"}
               </a>
             </div>
           </div>
@@ -45,13 +45,13 @@ const EndOfStage = ({
   );
 };
 
-EndOfStage.propTypes = {
+EndOfLevel.propTypes = {
   scored: PropTypes.number.isRequired,
   clicked: PropTypes.number.isRequired,
   timer: PropTypes.number.isRequired,
   leftTime: PropTypes.number.isRequired,
   decision: PropTypes.oneOf([FAILED, SUCCEED]).isRequired,
-  nextStageLink: PropTypes.string,
+  nextLevelLink: PropTypes.string,
 };
 
-export default EndOfStage;
+export default EndOfLevel;

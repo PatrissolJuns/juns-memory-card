@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Timer from "./Timer";
 import SideBar from "./SideBar";
 import {FAILED, StatusType} from "./../../../Settings/config";
-import EndOfStage from "./EndOfStage";
+import EndOfLevel from "./EndOfLevel";
 import CardList from "../Card/CardList";
 import {getNewObjectFromState, updateCardList} from "../../utilities";
 
-class StagePlay extends Component {
+class LevelPlay extends Component {
 
   constructor(props) {
     super(props);
@@ -84,16 +84,16 @@ class StagePlay extends Component {
             scored={this.state.scored}
             clicked={this.state.clicked}
             difficulty={this.props.difficulty}
-            stageName={this.props.name}
+            levelName={this.props.name}
           />
           <CardList
               cardList={this.state.cardList}
-              stageImageUrl={this.props.stageImageUrl}
+              levelImageUrl={this.props.levelImageUrl}
               clickedOnCardItem={this.clickedOnCardItemHandler}
           />
           {
             this.state.displayResult
-                ? <EndOfStage
+                ? <EndOfLevel
                     leftTime={this.state.leftTime}
                     timer={this.props.timer}
                     decision={this.state.decision}
@@ -107,14 +107,14 @@ class StagePlay extends Component {
   }
 }
 
-StagePlay.propTypes = {
+LevelPlay.propTypes = {
   id: PropTypes.number.isRequired,
   difficulty: PropTypes.node.isRequired,
-  stageImageUrl: PropTypes.string.isRequired,
+  levelImageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   status: PropTypes.oneOf([...StatusType]),
   data: PropTypes.arrayOf(PropTypes.string).isRequired,
   timer: PropTypes.number.isRequired,
 };
 
-export default StagePlay;
+export default LevelPlay;
