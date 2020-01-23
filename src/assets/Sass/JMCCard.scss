@@ -4,12 +4,19 @@
     @include default_background();
     //background-image: linear-gradient(to right, $jmc-primary, $jmc-secondary, $jmc-primary);
     padding: 20px;
+    height: 100%;
 
     figure {
       margin: 0;
-      img {
+      //height: 100%;
+      background-position: center;
+      background-size: cover;
+      height: 300px;
+
+      /*img {
         width: 100%;
-      }
+        height: 100%;
+      }*/
     }
   }
 

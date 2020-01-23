@@ -1,15 +1,31 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {RUNNING, Theme, UNREACHED} from "../Settings/config";
+import {RUNNING, Theme, UNREACHED} from "./../../Settings/config";
+import StageList from "./StageList";
+import StagePlay from "./StagePlay/StagePlay";
+import { withRouter } from "react-router";
 
 class MainComponent extends Component {
 
   constructor(props) {
     super(props);
+
+    let {data, stageImages} = Theme.onePiece;
+
+    console.log('this.props = ',props);
+    let stageId = 0;
+    if(!props.shouldDisplayStageList) {
+      stageId = Number(props.match.params.stageId);
+      /*console.log('ma = ',props.match);
+      console.log('ma = ',props.match.params.stageId);*/
+    }
+
+    stageImages = this.getStageListData(data, stageImages);
+
     this.state = {
       theme: Theme.onePiece,
-      stagePlayData: {},
-      stageItemData: [],
+      stageListData: stageImages,
+      stagePlayData: this.getStagePlayData(stageImages[stageId]),
       generalScore: 0,
       generalClicked: 0
     }
@@ -17,20 +33,20 @@ class MainComponent extends Component {
 
   componentDidMount() {
     let {data, stageImages} = this.state.theme;
-    console.log('data = ',data);
-    stageImages = this.getStageItemData(data, stageImages);
-    console.log('stageImages = ',stageImages);
+    // console.log('data = ',data);
+    stageImages = this.getStageListData(data, stageImages);
+    // console.log('stageImages = ',stageImages);
     let stagePlayData = this.getStagePlayData(stageImages[0]);
-    console.log('stagePlayData = ',stagePlayData);
+    // console.log('stagePlayData = ',stagePlayData);
 
   }
   // min and max included
   getRandomNumber = (min = 0, max = 10) => Math.floor(Math.random() * (max - min + 1) + min);
 
-  getStageItemData = (data, stageImages) => stageImages.map((item, index) => ({
+  getStageListData = (data, stageImages) => stageImages.map((item, index) => ({
     id: index,
     difficulty: this.getDifficulty(index),
-    imageUrl: item,
+    stageImageUrl: item,
     name: `Stage ${index}`,
     clicked: 0,
     scored: 0,
@@ -70,7 +86,19 @@ class MainComponent extends Component {
     // const result = this.props.shouldDisplayStageList ? <p>Stage List Component</p> : <p>Stage Play</p>;
     return (
         <>
-        {this.props.shouldDisplayStageList ? <p>Stage List Component</p> : <p>Stage Play</p>}
+        {this.props.shouldDisplayStageList
+            ? <StageList
+                stageList={this.state.stageListData}
+              />
+            : <StagePlay
+                id={this.state.stagePlayData.id}
+                difficulty={this.state.stagePlayData.difficulty}
+                stageImageUrl={this.state.stagePlayData.stageImageUrl}
+                name={this.state.stagePlayData.name}
+                data={this.state.stagePlayData.data}
+                timer={this.state.stagePlayData.timer}
+            />
+        }
         </>
     );
   }
@@ -81,4 +109,4 @@ MainComponent.propTypes = {
   stageToDisplay: PropTypes.number,
 };
 
-export default MainComponent;
+export default withRouter(MainComponent);

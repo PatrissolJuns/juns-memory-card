@@ -12,7 +12,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import MainComponent from "./Components/MainComponent";
+import MainComponent from "./Components/MainComponent/MainComponent";
 
 class App extends Component {
 
@@ -52,11 +52,9 @@ class App extends Component {
                   </Route>
                   <Route path="/stage-list">
                     <MainComponent shouldDisplayStageList={true} />
-                    <p>STAGE LIST</p>
                   </Route>
-                  <Route path="/play">
+                  <Route path="/play/stage/:stageId">
                     <MainComponent shouldDisplayStageList={false} />
-                    <p>STAGE PLAY</p>
                   </Route>
                   <Redirect to="/" />
                 </Switch>

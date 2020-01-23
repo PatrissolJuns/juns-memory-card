@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { WON_IMG, LOST_IMG } from "../../Settings/config";
+import { WON_IMG, LOST_IMG } from "../../../Settings/config";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader,
   Card, CardImg, CardImgOverlay, CardText, CardTitle} from "reactstrap";
 

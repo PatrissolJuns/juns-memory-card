@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const JMCSection = ({
                       positionChildren = 'justify-content-center',
@@ -32,6 +33,12 @@ const JMCSection = ({
         </div>
       </div>
   );
+};
+
+JMCSection.propTypes = {
+  positionChildren: PropTypes.string,
+  marginTop: PropTypes.string,
+  children: PropTypes.element,
 };
 
 export default JMCSection;

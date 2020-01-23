@@ -1,19 +1,24 @@
 .Timer {
+    position: absolute;
     display: flex;
     color: white;
     height: 20px;
     text-align: center;
     background: #f1ecec;
     border: 1px solid gray;
+    //width: 100%;
+    z-index: 102;
+    width: calc(100% - 150px);
+    margin-left: 150px;
 }
 
 .Timer .Progress {
-    background: #2770b0;
+    background: #e4a40f;
     width: 0%;
 }
 
 .Timer .Progress.Finished {
-    background: green;
+    //background: green;
     width: 100%;
 }
 

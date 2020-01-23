@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './Timer.scss';
+import '../../../assets/Sass/Timer.scss';
 import PropTypes from 'prop-types';
-import { MAX_TIMER} from "../../Settings/config";
+import { MAX_TIMER} from "../../../Settings/config";
 
 class Timer extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class Timer extends Component {
 }
 
 Timer.propTypes = {
-  timer: PropTypes.number,
+  timer: PropTypes.number.isRequired,
 };
 
 export default Timer;
