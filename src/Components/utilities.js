@@ -31,7 +31,22 @@ export const parseDataToMatrix = data => {
 export const getMatrix = (data, level) => {
   let halfData = data.slice(0, level.imagesNumber);
   const r = ~~(level.items / 2) - level.imagesNumber;
-  if(r > 0) halfData.push(...extractRandomly(halfData, r));
+  if(level.level === 10) {
+    console.log('r = ', r);
+    console.log('before work = ', halfData);
+  }
+  if(r > 0) {
+    const halfDataLength = halfData.length;
+    if(r > halfDataLength) {
+      let i = r;
+      while(i > 0) {
+        halfData.push(...extractRandomly(halfData, i > halfDataLength ? halfDataLength : i));
+        i = i - halfDataLength;
+      }
+    }
+    else halfData.push(...extractRandomly(halfData, r));
+  }
+  if(level.level === 10) console.log('after work = ', halfData);
 
   return parseDataToMatrix(shuffle(halfData));
 };
@@ -52,3 +67,10 @@ export const extractRandomly = (arr, length) => {
 }
 
 export const getLevel = levelNumber => levels.find(level => level.level === levelNumber);
+
+export const getBackgroundLevelImage = (levelNumber, levelImages) => {
+  if(0 < levelNumber && 6 < levelNumber) return levelImages[0];
+  if(5 < levelNumber && 11 < levelNumber) return levelImages[1];
+  if(10 < levelNumber && 16 < levelNumber) return levelImages[2];
+  else return levelImages[3];
+}

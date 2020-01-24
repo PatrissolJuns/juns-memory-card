@@ -16,18 +16,18 @@ const EndOfLevel = ({
   return (
       <div className={"jmc-end-of-level"}>
         <JMCSection>
-          <div className="col-md-12">
+          <div className="col-md-12 result-title">
             <JMCTitle title={"Result"} />
           </div>
           <div className="col-md-6">
             <div className="test_box">
               <div className="jons">
-                <h4>You {decision === SUCCEED ? "Win" : "Lost"}</h4>
+                {/*<h4>You {decision === SUCCEED ? "Win" : "Lost"}</h4>*/}
               </div>
-              <p>Score: &nbsp; {scored}</p>
-              <p>Clicked time: &nbsp; {clicked}</p>
-              <p>Timer: &nbsp; {timer}</p>
-              <p>Your time: &nbsp; {timer - leftTime}</p>
+              <p>Score: &nbsp; <strong>{scored}</strong></p>
+              <p>Clicked time: &nbsp; <strong>{clicked}</strong></p>
+              <p>Timer: &nbsp; <strong>{timer}</strong></p>
+              <p>Your time: &nbsp; <strong>{timer - leftTime}</strong></p>
               <a className="read_more" href={nextLevelLink}>
                 {decision === SUCCEED ? "Next level" : "Retry"}
               </a>

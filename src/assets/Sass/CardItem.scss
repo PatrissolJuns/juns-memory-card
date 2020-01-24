@@ -9,7 +9,12 @@
             height: 200px;
             width: 200px;
 
-            &.hard {
+            &.smallest {
+                height: 70px;
+                width: 70px;
+            }
+
+            &.small {
                 height: 100px;
                 width: 100px;
             }
@@ -19,9 +24,9 @@
                 width: 140px;
             }
 
-            &.easy {
+            &.big {
                 height: 200px;
-                width: 2000px;
+                width: 200px;
             }
 
         }

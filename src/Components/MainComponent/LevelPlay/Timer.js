@@ -18,7 +18,7 @@ class Timer extends Component {
         return {
           currentTimer: prevState.currentTimer + 1
         }
-      })
+      }, () => this.props.updateLeftTimer(this.state.currentTimer))
     } else {
       clearInterval(this.timerID);
     }
@@ -67,6 +67,7 @@ class Timer extends Component {
 
 Timer.propTypes = {
   timer: PropTypes.number.isRequired,
+  updateLeftTimer: PropTypes.func.isRequired,
 };
 
 export default Timer;

@@ -28,10 +28,10 @@ export const Theme = {
     // cardBackground: 'url("https://i.postimg.cc/dVsJ1yCC/one-piece-couv.png")',
     levelImages: [
       // "https://i.postimg.cc/dVsJ1yCC/one-piece-couv.png",
-      // "https://i.postimg.cc/htctdYkf/244-2440924-tony-tony-chopper-chopper-one-piece-wallpaper-hd.png",
-      // "https://i.postimg.cc/q7Bq9Fw9/by-melonciutus-strong-manga-mastodon-big-mom-the-four-empero.jpg",
       "https://i.postimg.cc/Sx2VQHjz/game1.jpg",
       "https://i.postimg.cc/dVsJ1yCC/one-piece-couv.png",
+      "https://i.postimg.cc/htctdYkf/244-2440924-tony-tony-chopper-chopper-one-piece-wallpaper-hd.png",
+      "https://i.postimg.cc/q7Bq9Fw9/by-melonciutus-strong-manga-mastodon-big-mom-the-four-empero.jpg",
       GAME_1,
       GAME_3,
       GAME_4,

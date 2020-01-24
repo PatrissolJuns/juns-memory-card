@@ -12,6 +12,7 @@ const JMCCard = ({
                    textTop,
                    cardAddStyle,
                    paddingGameBox = '',
+                   boxSizeClass = '',
                    ...props}) => {
 
   let style = {
@@ -26,7 +27,7 @@ const JMCCard = ({
       >
         <div className={`game_box ${paddingGameBox}`}>
           <p className={"jmc-level-item-name"}>{textTop}</p>
-          <figure style={style}> </figure>
+          <figure className={boxSizeClass} style={style}> </figure>
         </div>
         {
           withButton
@@ -49,6 +50,8 @@ JMCCard.propTypes = {
   addClass: PropTypes.string,
   textTop: PropTypes.string,
   cardAddStyle: PropTypes.object,
+  paddingGameBox: PropTypes.string,
+  boxSizeClass: PropTypes.string,
 };
 
 export default JMCCard;

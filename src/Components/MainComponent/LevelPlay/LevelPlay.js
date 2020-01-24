@@ -22,9 +22,15 @@ class LevelPlay extends Component {
       clicked: 0,
       decision: FAILED,
       leftTime: 0,
-      displayResult: false
+      displayResult: true
     }
   }
+
+  /**
+   * Get the number of card done
+   * @returns {number}
+   */
+  getProgress = () => this.state.cardList.filter(c => !c.shouldDisplay).length / 2;
 
   clickedOnCardItemHandler = (id) => {
     console.log('id = ', id);
@@ -55,16 +61,17 @@ class LevelPlay extends Component {
     if(activatedCard.length === 2) {
       let card1 = {...activatedCard[0]}, card2 = {...activatedCard[1]}; // To not mutate directly the state
 
+      // Check if the cards are right
       if(card1.imageUrl === card2.imageUrl) {
         card1.shouldDisplay = false;
         card2.shouldDisplay = false;
-        this.setState((prevState) => ({scored: prevState.scored + 1, cardList: updateCardList(prevState.cardList, card1, card2)}));
       }
       else {
         card1.active = false;
         card2.active = false;
-        this.setState((prevState) => ({cardList: updateCardList(prevState.cardList, card1, card2)}));
       }
+      // Update the cardList
+      this.setState((prevState) => ({cardList: updateCardList(prevState.cardList, card1, card2)}));
     }
   }
 
@@ -76,14 +83,21 @@ class LevelPlay extends Component {
     this.state.cardList.forEach(card => new Image().src = card.imageUrl);
   }
 
+  leftTimerHandler = newValue => {
+    let leftTime = this.props.timer - newValue;
+    if(leftTime <= 0)
+      this.setState((prevState) => ({leftTime: leftTime, displayResult: true}));
+    else this.setState((prevState) => ({leftTime: leftTime}));
+  }
+
+
   render() {
     return (
         <>
-          <Timer timer={this.props.timer}/>
+          <Timer timer={this.props.timer} updateLeftTimer={this.leftTimerHandler}/>
           <SideBar
-            scored={this.state.scored}
+            progress={`${this.getProgress()}/${this.state.cardList.length / 2}`}
             clicked={this.state.clicked}
-            difficulty={this.props.difficulty}
             levelName={this.props.name}
           />
           <CardList
@@ -109,7 +123,6 @@ class LevelPlay extends Component {
 
 LevelPlay.propTypes = {
   id: PropTypes.number.isRequired,
-  difficulty: PropTypes.node.isRequired,
   levelImageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   status: PropTypes.oneOf([...StatusType]),

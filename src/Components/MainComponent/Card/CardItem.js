@@ -8,6 +8,7 @@ const CardItem = ({
                     imageUrl,
                     shouldDisplay,
                     active,
+                    cardSizeClass,
                     clickedOnCardItem,
                     ...props}) => {
     /*let style = {
@@ -34,6 +35,7 @@ const CardItem = ({
             addClass={classes.join(' ')}
             marginBottom={'mb-1'}
             paddingGameBox={"p-1"}
+            boxSizeClass={cardSizeClass}
             onClick={() => clickedOnCardItem(id)}
         />
         /*<div
@@ -51,6 +53,7 @@ CardItem.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,
+  cardSizeClass: PropTypes.string.isRequired,
   clickedOnCardItem: PropTypes.func.isRequired,
 };
 

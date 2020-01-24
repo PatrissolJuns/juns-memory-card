@@ -14,7 +14,7 @@ const CardList = ({cardList, levelImageUrl, clickedOnCardItem, ...props}) => {
                   shouldDisplay={card.shouldDisplay}
                   active={card.active}
                   clickedOnCardItem={clickedOnCardItem}
-                />
+                  cardSizeClass={getCardSizeClass(cardList.length)}/>
         })
       }
       </div>
@@ -28,3 +28,12 @@ CardList.propTypes = {
 };
 
 export default CardList;
+
+const getCardSizeClass = (cardListLength) => {
+  switch (cardListLength) {
+    case 6: return 'big';
+    case 14: return'medium';
+    case 24: return 'small';
+    default: return 'smallest';
+  }
+};

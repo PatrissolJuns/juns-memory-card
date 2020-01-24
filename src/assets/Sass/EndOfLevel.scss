@@ -1,0 +1,35 @@
+.jmc-end-of-level {
+  $max-height-end-of-level: 500px;
+  max-height: $max-height-end-of-level;
+  position: absolute;
+  z-index: 200;
+  top: calc(calc(100vh - 500px) / 2);
+  height: $max-height-end-of-level;
+  overflow: hidden;
+  transition: 400ms;
+
+  .result-title {
+    h2 {
+      background: #220b05;
+      -webkit-background-clip: text;
+    }
+
+    span {
+      border: #220b05 solid 1px;
+    }
+  }
+
+  .test_box {
+    padding-left: 100px;
+
+    p {
+      padding: 10px;
+
+      strong {
+        font-size: 18px;
+        /* color: black; */
+        font-weight: bold;
+      }
+    }
+  }
+}

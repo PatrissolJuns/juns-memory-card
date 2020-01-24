@@ -4,6 +4,8 @@ import {RUNNING, Theme, UNREACHED} from "./../../Settings/config";
 import LevelList from "./LevelList";
 import LevelPlay from "./LevelPlay/LevelPlay";
 import { withRouter } from "react-router";
+import {getBackgroundLevelImage, getLevel, getMatrix, getRandomNumber} from "../utilities";
+import {levels} from "../../Settings/data";
 
 class MainComponent extends Component {
 
@@ -11,75 +13,57 @@ class MainComponent extends Component {
     super(props);
 
     let {data, levelImages} = Theme.onePiece;
+    let levelList = [];
 
-    console.log('this.props = ',props);
     let levelId = 0;
     if(!props.shouldDisplayLevelList && props.match.params.hasOwnProperty('levelId')) {
       levelId = Number(props.match.params.levelId);
-      /*console.log('ma = ',props.match);
-      console.log('ma = ',props.match.params.levelId);*/
     }
 
-    levelImages = this.getLevelListData(data, levelImages);
+    if(levelId < 0 || levelId > 20) {
+      throw new Error("Level does not exist");
+    }
+
+    levelList = this.getLevelListData(data, levelImages, levels);
 
     this.state = {
       theme: Theme.onePiece,
-      levelListData: levelImages,
-      levelPlayData: this.getLevelPlayData(levelImages[levelId]),
+      levelListData: levelList,
+      levelPlayData: this.getLevelPlayData(levelList[levelId - 1]),
       generalScore: 0,
       generalClicked: 0
     }
   }
 
   componentDidMount() {
-    let {data, levelImages} = this.state.theme;
+    console.log('data = ',this.state.levelListData[1]);
+    console.log('current = ',this.state.levelPlayData);
+    /*let {data, levelImages} = this.state.theme;
     // console.log('data = ',data);
     levelImages = this.getLevelListData(data, levelImages);
     // console.log('levelImages = ',levelImages);
-    let levelPlayData = this.getLevelPlayData(levelImages[0]);
+    let levelPlayData = this.getLevelPlayData(levelImages[0]);*/
     // console.log('levelPlayData = ',levelPlayData);
-
   }
-  // min and max included
-  getRandomNumber = (min = 0, max = 10) => Math.floor(Math.random() * (max - min + 1) + min);
 
-  getLevelListData = (data, levelImages) => levelImages.map((item, index) => ({
-    id: index,
-    difficulty: this.getDifficulty(index),
-    levelImageUrl: item,
-    name: `Level ${index}`,
+  getLevelListData = (data, levelImages, levels) => levels.map(level => ({
+    id: level.level,
+    levelImageUrl: getBackgroundLevelImage(level.level, levelImages),
+    name: `Level ${level.level}`,
     clicked: 0,
     scored: 0,
     status: UNREACHED,
-    data: this.parseDataToMatrix(data, this.getDifficulty(index))
+    data: getMatrix(data, level)
   }));
 
   getLevelPlayData = data => ({
     ...data,
     status: RUNNING,
-    timer: this.getTimer(data.difficulty)
+    timer: this.getTimer(getLevel(data.id))
   });
 
-  getTimer = difficulty => {
-    return difficulty * 60;
-  }
-
-  getDifficulty = (index) => {
-    return index + 1;
-  }
-
-  parseDataToMatrix = (data, difficulty) => {
-    if(data.length % 2 !== 0) {
-      throw new Error("data must be a multiple of 2");
-    }
-    let newData = [...data];
-    data.forEach((d, index) => {
-      let pos = this.getRandomNumber(0, data.length - 1);
-      while(pos === index ) pos = this.getRandomNumber(0, data.length - 1);
-      newData.splice(pos, 0, d);
-    });
-
-    return newData;
+  getTimer = level => {
+    return level.items * 3 + level.imagesNumber * 2;
   }
 
   render() {
@@ -92,7 +76,6 @@ class MainComponent extends Component {
               />
             : <LevelPlay
                 id={this.state.levelPlayData.id}
-                difficulty={this.state.levelPlayData.difficulty}
                 levelImageUrl={this.state.levelPlayData.levelImageUrl}
                 name={this.state.levelPlayData.name}
                 data={this.state.levelPlayData.data}
