@@ -9,21 +9,7 @@
   }
 
   .test_box {
-    .jons {
-      text-align: left;
 
-      h4 {
-        font-size: 40px;
-        color: #1b0905;
-        line-height: 50px;
-        display: inline-block;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-      figure {
-        margin: 0;
-      }
-    }
 
     p {
       font-size: 17px;
@@ -31,6 +17,22 @@
       color: #1b0905;
       text-align: left;
       padding: 20px 0;
+    }
+  }
+
+  .jons {
+    text-align: left;
+
+    h4 {
+      font-size: 40px;
+      color: #1b0905;
+      line-height: 50px;
+      display: inline-block;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    figure {
+      margin: 0;
     }
   }
 
@@ -49,10 +51,10 @@
     float: left;
 
     &:hover {
-      background: #fff;
-      color: #1f0b04 !important;
+      color: #fff !important;
+      background: #451608;
       transition: all .4s ease-in;
-      border-radius: 20px;
+      //border-radius: 20px;
     }
   }
 }

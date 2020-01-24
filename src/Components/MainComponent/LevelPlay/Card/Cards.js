@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../../assets/Sass/Cards.scss';
+import '../../../../assets/Sass/Cards.scss';
 import CardItem from "./CardItem";
 
 class Cards extends Component {

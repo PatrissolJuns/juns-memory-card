@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import JMCCard from "../../UIElements/JMCCard";
+import JMCCard from "../../../UIElements/JMCCard";
 
 const CardItem = ({
                     id,
@@ -115,7 +115,7 @@ export default CardItem;
 /*
 import React, {Component} from 'react';
 import './CardItem.scss';
-import {ThemeContext} from "../../../Settings/config";
+import {ThemeContext} from "../../../Others/config";
 
 class CardItem extends Component {
   constructor(props) {

@@ -1,0 +1,12 @@
+export const MAX_TIMER = 301;  // 5 minutes
+export const MIN_TIMER = 10;
+export const SCORE = 'SCORE';
+export const TIME = 'TIME';
+export const RUNNING = 'RUNNING';
+export const FAILED = 'FAILED';
+export const SUCCEED = 'SUCCEED';
+export const UNREACHED = 'UNREACHED';
+export const EASY = 'Easy';
+export const MEDIUM = 'Medium';
+export const HARD = 'Hard';
+export const StatusType = [RUNNING, FAILED, SUCCEED, UNREACHED];

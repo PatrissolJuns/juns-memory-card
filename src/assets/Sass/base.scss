@@ -293,6 +293,15 @@ button {
   opacity: 0 !important;
 }
 
+.opacity-1 {
+  opacity: 1 !important;
+}
+
+.transition-400 {
+  transition: 400ms;
+}
+
+
 .jmc-arrow {
   position: absolute;
   top: 0;
@@ -342,6 +351,16 @@ button {
 .right-100 {
   right: 100%;
 }
+
+.visibility-hidden {
+  visibility: hidden !important;
+}
+
+.visibility-visible {
+  visibility: visible !important;
+}
+
+
 
 .jmc-level-item {
   cursor: pointer;

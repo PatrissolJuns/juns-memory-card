@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import './assets/Sass/base.scss';
 import './App.scss';
 import Header from "./Components/Header";
-import { ThemeContext, Theme } from './Settings/config';
+import { ThemeContext, Theme } from './Others/config';
 import JMCContainer from "./Components/JMCContainer";
 import HomeScreen from "./Components/HomeScreen";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import MainComponent from "./Components/MainComponent/MainComponent";
@@ -19,7 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      theme: Theme.onePiece
     }
   }
 

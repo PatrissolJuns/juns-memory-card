@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 const JMCSection = ({
                       positionChildren = 'justify-content-center',
                       marginTop = '',
-                      children,
                       ...props}) => {
   return (
       <div {...props} className={`jmc-section ${marginTop}`}>
         <div className="container">
           <div className="jmc-section-content">
             <div className={`row d_flex ${positionChildren}`}>
-              {children}
+              {props.children}
               {/*<div className="col-md-6">
                 <div className="test_box">
                   <div className="jons">
@@ -38,7 +37,6 @@ const JMCSection = ({
 JMCSection.propTypes = {
   positionChildren: PropTypes.string,
   marginTop: PropTypes.string,
-  children: PropTypes.element,
 };
 
 export default JMCSection;

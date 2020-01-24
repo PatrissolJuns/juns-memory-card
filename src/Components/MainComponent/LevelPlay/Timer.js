@@ -1,8 +1,55 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../../../assets/Sass/Timer.scss';
 import PropTypes from 'prop-types';
-import { MAX_TIMER} from "../../../Settings/config";
 
+const Timer = ({timer, spentTime, shouldStop, ...props}) => {
+  const displayNumber = number => number > 9 ? `${number}` : `0${number}`;
+
+  const displayTimer = () => {
+    const leftTimer = timer > spentTime ? timer - spentTime : 0;
+
+    if(leftTimer > 60) {
+      return `${displayNumber(~~(leftTimer / 60))}:${displayNumber(leftTimer % 60)}`;
+    }
+    return `${displayNumber(leftTimer)}s`;
+  }
+  let style = null;
+
+  if(shouldStop) {
+    style = {
+      width: `${~~((spentTime / timer) * 100)}%`,
+      animation: 'unset',
+    };
+  }
+  else {
+    style = {
+      // width: `${~~((this.state.currentTimer / this.state.timer) * 100)}%`,
+      animation: `${timer}s linear 0s 1 normal none running timer`,
+    };
+  }
+
+  return (
+      <div className="Timer">
+        <div
+            className={spentTime === timer ? "Progress Finished" : "Progress"}
+            style={style}>
+        </div>
+        <strong>{ displayTimer() }</strong>
+      </div>
+  );
+
+}
+
+Timer.propTypes = {
+  timer: PropTypes.number.isRequired,
+  shouldStop: PropTypes.bool.isRequired,
+  spentTime: PropTypes.number.isRequired
+};
+
+export default Timer;
+
+
+/*
 class Timer extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +60,7 @@ class Timer extends Component {
   }
 
   updateTimer() {
+    if(this.props.stopCounting) clearInterval(this.timerID);
     if(this.state.currentTimer < this.state.timer) {
       this.setState((prevState, props) => {
         return {
@@ -64,10 +112,4 @@ class Timer extends Component {
     );
   }
 }
-
-Timer.propTypes = {
-  timer: PropTypes.number.isRequired,
-  updateLeftTimer: PropTypes.func.isRequired,
-};
-
-export default Timer;
+*/

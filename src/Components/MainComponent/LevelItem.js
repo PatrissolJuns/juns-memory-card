@@ -4,7 +4,6 @@ import JMCCard from "../UIElements/JMCCard";
 
 const LevelItem = ({
                      id,
-                     difficulty,
                      levelImageUrl,
                      name,
                      clicked,
@@ -38,7 +37,6 @@ const LevelItem = ({
 
 LevelItem.propTypes = {
   id: PropTypes.number.isRequired,
-  difficulty: PropTypes.node.isRequired,
   levelImageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   clicked: PropTypes.number.isRequired,
