@@ -47,4 +47,9 @@ export const Theme = {
   },
 };
 
+export const ADMIN_EMAIL = "adminjmc@gmail.com";
+export const ADMIN_PWD = "adminjmc";
+
+export const COLLECTION_STATISTICS_NAME = 'statistics';
+
 export const ThemeContext = React.createContext(Theme.onePiece);

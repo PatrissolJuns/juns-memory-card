@@ -16,6 +16,7 @@ import {
 } from "../../utilities";
 import {levels} from "../../../Others/data";
 import {FAILED, StatusType, SUCCEED} from "../../../Others/constants";
+import {getStatsByPseudo} from "../../../Others/firebase/database-utilities";
 
 class LevelPlay extends Component {
 
@@ -39,7 +40,9 @@ class LevelPlay extends Component {
   }
 
   componentDidMount() {
-
+    /*getStatsByPseudo('JUq').then(
+        data => console.log('data => ',data)
+    ).catch(error => console.log('error => ',error));*/
     this.timerID = setInterval(
         () => this.updateTimer(),
         1000
