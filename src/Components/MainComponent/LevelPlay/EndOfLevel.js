@@ -7,6 +7,7 @@ import CountUp from "react-countup";
 import {FAILED, SUCCEED} from "../../../Others/constants";
 import {LOST_IMG, NEXT_IMG, RETRY_IMG, WON_IMG} from "../../../Others/config";
 import {preloadImages} from "../../utilities";
+import CollectUserInformation from "./CollectUserInformation";
 
 const EndOfLevel = ({
                       timer,
@@ -17,12 +18,17 @@ const EndOfLevel = ({
                       levelScore,
                       clickedTime,
                       nextLevelLink,
+                      userName,
+                      userPseudo,
+                      isUserGenerated,
+                      updateUserSessionValue,
                       ...props}) => {
 
   const [launchLevelScore, setLaunchLevelScore] = useState(false);
   const [displayResultButton, setDisplayResultButton] = useState(false);
   const [toggleLostImage, setToggleLostImage] = useState(false);
   const [toggleWonImage, setToggleWonImage] = useState(false);
+  const [toggleCollectUserInformation, setToggleCollectUserInformation] = useState(false);
 
   const toggleOpacity = toggler => toggler ? 'opacity-1' : 'opacity-0';
 
@@ -120,14 +126,28 @@ const EndOfLevel = ({
                   </div>
                   <div className="col-12">
                     <div className="row justify-content-center">
-                      <a
-                          className="read_more"
-                          href={nextLevelLink}
-                          onMouseOver={() => decision === FAILED ? setToggleLostImage(true) : setToggleWonImage(true)}
-                          onMouseOut={() => decision === FAILED ? setToggleLostImage(false) : setToggleWonImage(false)}
-                      >
-                        {decision === SUCCEED ? "Next level" : "Retry"}
-                      </a>
+                      {
+                        isUserGenerated && decision === SUCCEED
+                            ?
+                            <a
+                                className="read_more"
+                                href={"#"}
+                                onClick={() => setToggleCollectUserInformation(true)}
+                                onMouseOver={() => decision === FAILED ? setToggleLostImage(true) : setToggleWonImage(true)}
+                                onMouseOut={() => decision === FAILED ? setToggleLostImage(false) : setToggleWonImage(false)}
+                            >
+                              {decision === SUCCEED ? "Next level" : "Retry"}
+                            </a>
+                            :
+                            <a
+                                className="read_more"
+                                href={toggleCollectUserInformation ? '' : nextLevelLink}
+                                onMouseOver={() => decision === FAILED ? setToggleLostImage(true) : setToggleWonImage(true)}
+                                onMouseOut={() => decision === FAILED ? setToggleLostImage(false) : setToggleWonImage(false)}
+                            >
+                              {decision === SUCCEED ? "Next level" : "Retry"}
+                            </a>
+                      }
                     </div>
                   </div>
                 </div>
@@ -136,16 +156,18 @@ const EndOfLevel = ({
             </div>
 
           </div>
-
-
-          {/*<div className="col-md-6">
-            <div className="test_box">
-              <div className="jons">
-                <figure><img src={IMG} alt="#"/></figure>
-              </div>
-            </div>
-          </div>*/}
         </JMCSection>
+
+        {
+          toggleCollectUserInformation
+              ? <CollectUserInformation
+                  userName={userName}
+                  userPseudo={userPseudo}
+                  isUserGenerated={isUserGenerated}
+                  updateUserSessionValue={updateUserSessionValue}
+              />
+              : null
+        }
       </div>
   );
 };
@@ -159,6 +181,10 @@ EndOfLevel.propTypes = {
   clickedTime: PropTypes.number.isRequired,
   nextLevelLink: PropTypes.string.isRequired,
   decision: PropTypes.oneOf([FAILED, SUCCEED]).isRequired,
+  userName: PropTypes.string.isRequired,
+  userPseudo: PropTypes.string.isRequired,
+  isUserGenerated: PropTypes.bool.isRequired,
+  updateUserSessionValue: PropTypes.func.isRequired,
 };
 
 export default EndOfLevel;

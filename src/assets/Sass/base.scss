@@ -301,6 +301,37 @@ button {
   transition: 400ms;
 }
 
+.form_main {
+  .form_control {
+    border: inherit;
+    border-bottom: #ddd solid 1px;
+    background-color: transparent;
+    font-size: 17px;
+    margin-bottom: 30px;
+    border-radius: inherit;
+    padding-bottom: 10px;
+    color: #f9fcfd;
+    width: 100%;
+  }
+
+  .send_btn {
+    font-size: 17px;
+    border: #fff solid 2px;
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 60px;
+    border-radius: 35px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+}
 
 .jmc-arrow {
   position: absolute;

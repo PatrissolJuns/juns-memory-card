@@ -34,8 +34,10 @@ class LevelPlay extends Component {
       timeBonus: 0,
       levelScore: 0,
       clickedTime: 0,
-      decision: FAILED,
-      displayResult: false
+      // decision: FAILED,
+      // displayResult: false
+      decision: SUCCEED,
+      displayResult: true
     }
   }
 
@@ -214,6 +216,10 @@ class LevelPlay extends Component {
                     levelScore={this.state.levelScore}
                     clickedTime={this.state.clickedTime}
                     nextLevelLink={this.getNextLevelLink()}
+                    userName={this.props.userName}
+                    userPseudo={this.props.userPseudo}
+                    isUserGenerated={this.props.isUserGenerated}
+                    updateUserSessionValue={this.props.updateUserSessionValue}
                 />
                 : null
           }
@@ -230,6 +236,10 @@ LevelPlay.propTypes = {
   status: PropTypes.oneOf([...StatusType]),
   data: PropTypes.arrayOf(PropTypes.string).isRequired,
   timer: PropTypes.number.isRequired,
+  userName: PropTypes.string.isRequired,
+  userPseudo: PropTypes.string.isRequired,
+  isUserGenerated: PropTypes.bool.isRequired,
+  updateUserSessionValue: PropTypes.func.isRequired,
 };
 
 export default LevelPlay;

@@ -79,6 +79,10 @@ class MainComponent extends Component {
                 name={this.state.levelPlayData.name}
                 data={this.state.levelPlayData.data}
                 timer={this.state.levelPlayData.timer}
+                userName={this.props.userName}
+                userPseudo={this.props.userPseudo}
+                isUserGenerated={this.props.isUserGenerated}
+                updateUserSessionValue={this.props.updateUserSessionValue}
             />
         }
         </>
@@ -87,8 +91,12 @@ class MainComponent extends Component {
 }
 
 MainComponent.propTypes = {
-  shouldDisplayLevelList: PropTypes.bool,
+  shouldDisplayLevelList: PropTypes.bool.isRequired,
   levelToDisplay: PropTypes.number,
+  userName: PropTypes.string.isRequired,
+  userPseudo: PropTypes.string.isRequired,
+  isUserGenerated: PropTypes.bool.isRequired,
+  updateUserSessionValue: PropTypes.func.isRequired,
 };
 
 export default withRouter(MainComponent);

@@ -6,7 +6,7 @@ const db = firebase.firestore();
 
 const sampleStats = [
   {
-    name: 'juns',
+    userName: 'juns',
     levels: {
       medium: [
         {levelNumber: 1, levelScore: 452, time: 10},
@@ -18,7 +18,7 @@ const sampleStats = [
     }
   },
   {
-    name: 'name_1234',
+    userName: 'name_1234',
     levels: {
       medium: [
         {levelNumber: 1, levelScore: 678, time: 12},
@@ -28,19 +28,19 @@ const sampleStats = [
   }
 ];
 
-export const getStatsByPseudo = pseudo => {
+export const getStatsByPseudo = userPseudo => {
   return new Promise((resolve, reject) => {
-    isUserExist(pseudo)
+    isUserExist(userPseudo)
       .then(() => {
         db.collection(COLLECTION_STATISTICS_NAME)
-          .doc(pseudo)
+          .doc(userPseudo)
           .get()
           .then(doc => resolve(doc.data())).catch(error => reject(error));
       })
       .catch(err => {console.log('err = ',err); reject(err)})
   });
   /*if(isUserExist) {
-     const docRef = db.collection(COLLECTION_STATISTICS_NAME).doc(name);
+     const docRef = db.collection(COLLECTION_STATISTICS_NAME).doc(userName);
 
      docRef.get().then(function(doc) {
        if (doc.exists) {
@@ -57,17 +57,17 @@ export const getStatsByPseudo = pseudo => {
    }*/
 };
 
-export const createUserStat = (pseudo, data) => {
+export const createUserStat = (userPseudo, data) => {
   return new Promise((resolve, reject) => {
     db.collection(COLLECTION_STATISTICS_NAME)
-      .doc(pseudo)
+      .doc(userPseudo)
       .set(data, { merge: true })
       .then(data => resolve(data))
       .catch(error => reject(error));
   });
-  /*db.collection(COLLECTION_STATISTICS_NAME).doc(name).set(
+  /*db.collection(COLLECTION_STATISTICS_NAME).doc(userName).set(
       {
-        name: 'juname_1234',
+        userName: 'juname_1234',
         levels: {
           medium: [
             {levelNumber: 3, levelScore: 678, time: 12},
@@ -79,13 +79,13 @@ export const createUserStat = (pseudo, data) => {
   );*/
 };
 
-export const isUserExist = pseudo => {
+export const isUserExist = userPseudo => {
   return new Promise((resolve, reject) => {
     db.collection(COLLECTION_STATISTICS_NAME)
-      .doc(pseudo)
+      .doc(userPseudo)
       .get()
       .then(function(doc) {
-        resolve(doc.exists);
+        doc.exists ? resolve(doc.exists) : reject(doc.exists);
       })
       .catch(function(error) {
         reject(error);
@@ -93,11 +93,11 @@ export const isUserExist = pseudo => {
   });
 };
 
-export const updateUserStats = (pseudo, newDate) => {
+export const updateUserStats = (userPseudo, newDate) => {
   return new Promise((resolve, reject) => {
     // WE DO NOT MODIFY DIRECTLY THE STATE SO FOR THAT EACH WE OVERWRITE DIRECTLY ALL THE DATA
     db.collection(COLLECTION_STATISTICS_NAME)
-      .doc(pseudo)
+      .doc(userPseudo)
       .update(newDate)
       .then(() => resolve(true))
       .catch(() => reject(false));
@@ -171,38 +171,7 @@ console.log('sampleStatsAAA =====> ',sampleStats[0]);*/
 * =========================================================================
 * */
 
-export const isUserSessionValueExist = () => localStorage.getItem('name') !== null;
-
-export const generateUserSessionValue = () => {
-  if(!isUserSessionValueExist()){
-    localStorage.setItem('name', generateStringByType('name'));
-    localStorage.setItem('pseudo', generateStringByType('pseudo'));
-    localStorage.setItem('isGenerated', 'true');
-    return true;
-  }
-  return false;
-};
-
-export const updateUserSessionValue = (name, pseudo, isGenerated = false) => {
-  if(isUserSessionValueExist()){
-    localStorage.setItem('name', name);
-    localStorage.setItem('pseudo', pseudo);
-    localStorage.setItem('isGenerated', '' + isGenerated);
-    return true;
-  }
-  return false;
-};
-
-export const getUserSessionValue = () => {
-  if(isUserSessionValueExist()){
-    return {
-      name: localStorage.getItem('name'),
-      pseudo: localStorage.getItem('pseudo'),
-      isGenerated: localStorage.getItem('isGenerated'),
-    }
-  }
-  return null;
-};
+export const isUserSessionValueExist = () => localStorage.getItem('userPseudo') !== null;
 
 export const generateStringByType = type => {
   const mapping = [
@@ -224,11 +193,42 @@ export const generateStringByType = type => {
     mapping[ ~~(d.getSeconds()) ],
     mapping[ getRandomNumber(0, 51) ],
   ].join('');
-  if(type === 'name') {
+  if(type === 'userName') {
     return 'name_' + suffixGenerated
   }
-  else if (type === 'pseudo') return 'ps_' + suffixGenerated;
+  else if (type === 'userPseudo') return 'ps_' + suffixGenerated;
   else return suffixGenerated;
+};
+
+export const generateUserSessionValue = () => {
+  if(!isUserSessionValueExist()){
+    localStorage.setItem('userName', generateStringByType('userName'));
+    localStorage.setItem('userPseudo', generateStringByType('userPseudo'));
+    localStorage.setItem('isUserGenerated', 'true');
+    return true;
+  }
+  return false;
+};
+
+export const updateUserSessionValue = (userName, userPseudo, isUserGenerated = false) => {
+  if(isUserSessionValueExist()){
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('userPseudo', userPseudo);
+    localStorage.setItem('isUserGenerated', '' + isUserGenerated);
+    return true;
+  }
+  return false;
+};
+
+export const getUserSessionValue = () => {
+  if(isUserSessionValueExist()) {
+    return {
+      userName: localStorage.getItem('userName'),
+      userPseudo: localStorage.getItem('userPseudo'),
+      isUserGenerated: localStorage.getItem('isUserGenerated') === 'true',
+    }
+  }
+  return null;
 };
 
 // export const getSta
