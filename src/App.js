@@ -19,6 +19,7 @@ import {
   updateUserSessionValue, updateUserStats
 } from "./Others/firebase/database-utilities";
 import {MEDIUM} from "./Others/constants";
+import Instructions from "./Components/Instructions";
 
 class App extends Component {
 
@@ -110,9 +111,8 @@ class App extends Component {
                     <HomeScreen />
                     {/*<Link to="/topics">Topics</Link>*/}
                   </Route>
-                  <Route path="/topics">
-                    <h1>TOPICS </h1>
-                    {/*<Link to="/">Home</Link>*/}
+                  <Route exact path="/instructions">
+                    <Instructions />
                   </Route>
                   <Route path="/level-list">
                     <MainComponent

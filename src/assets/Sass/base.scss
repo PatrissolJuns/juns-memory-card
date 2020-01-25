@@ -427,3 +427,12 @@ button {
   display: flex;
   flex-wrap: wrap;
 }
+
+.instructions .jmc-end-of-level {
+  position: relative !important;
+  top: -80px !important;
+}
+
+.instructions-item p {
+  padding: 0 0 0 30px !important;
+}
