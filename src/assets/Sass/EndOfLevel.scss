@@ -8,6 +8,10 @@
   overflow: hidden;
   transition: 400ms;
 
+  .jmc-section-content {
+    padding: 20px 40px;
+  }
+
   .result-title {
     h2 {
       background: #220b05;
@@ -82,9 +86,9 @@
     position: absolute;
     top: 0;
     color: white !important;
-    margin-left: 25%;
+    //margin-left: 25%;
     height: 100%;
-    width: 50%;
+    //width: 50%;
     width: 90%;
     margin-left: 0;
 
@@ -98,7 +102,8 @@
       font-weight: bold;
       font-size: 19px !important;
       padding: 0 !important;
-      text-align: center !important;
+      padding-left: 16px !important;
+      //text-align: center !important;
       font-family: 'monospace';
     }
 
@@ -132,7 +137,7 @@
 
 .leader{
   padding: 8px 16px;
-  margin-bottom: 8px;
+  //margin-bottom: 8px;
   animation-name: revealLeaders;
   animation-duration: .4s;
   animation-fill-mode: both;
@@ -150,7 +155,7 @@
   font-weight: bold;
   font-size: 15px !important;
   padding: 0 !important;
-  text-align: center !important;
+  //text-align: center !important;
   font-family: 'monospace';
 }
 

@@ -122,6 +122,45 @@ export const getGlobalStats = () => {
   });
 };
 
+
+
+export const getHighScoreOfLevel = (levelNumber, difficulty) => {
+  return new Promise((resolve, reject) => {
+    getGlobalStats().then(
+        (stats) => {
+          console.log("stats = ",stats);
+
+          const newData = [];
+
+          for (let key in stats) {
+            if((stats.hasOwnProperty(key) && stats[key].hasOwnProperty('levels'))) {
+              if(stats[key]['levels'].hasOwnProperty(difficulty)) {
+                const levelExpected = stats[key]['levels'][difficulty].find(a => a.levelNumber === levelNumber);
+                newData.push({
+                  pseudo: key,
+                  // name: stats[key]['name'],
+                  levelScore: levelExpected ? levelExpected.levelScore : 0,
+                  time: levelExpected ? levelExpected.time : 0,
+                });
+              }
+            }
+          }
+
+          console.log('newData = ', newData);
+
+          const finalResult = newData.sort((a, b) => b.levelScore - a.levelScore);
+
+          console.log('finalResult = ', finalResult);
+          resolve(finalResult);
+        }
+    ).catch(error => reject(error));
+  })
+
+};
+
+getHighScoreOfLevel(1, 'Medium');
+
+
 export const sortLevels = levels => levels.sort((a, b) => a.levelNumber - b.levelNumber);
 
 export const updateOrCreateUserLevel = (oldData, difficulty, level) => {
@@ -153,6 +192,8 @@ export const updateOrCreateUserLevel = (oldData, difficulty, level) => {
 
   return newCopy;
 };
+
+
 /*console.log('sampleStats =====> ',sampleStats[0]);
 let tmp = updateOrCreateUserLevel(sampleStats[0], 'easy', {levelNumber: 2, levelScore: 20, time: 15});
 
