@@ -27,13 +27,17 @@ const CollectUserInformation = props => {
   };
 
   const formHandler = (type) => {
+    const level = {levelNumber: props.levelNumber, levelScore: props.levelScore, time: props.spentTime};
+
     if(type === 'save') {
       if(inputName !== '' && inputPseudo !== '') {
         setDisplayLoaderSave(true);
         if(!isNewAccount) {
           isUserExist(inputPseudo).then(
               () => {
-                props.updateUserSessionValue(inputPseudo, inputName, isNewAccount);
+                props.updateUserSessionValue(inputPseudo, inputName, isNewAccount, level).then(
+                    () => props.nextLevelFunc(true)
+                );
                 setDisplayLoaderSave(false);
               }
           ).catch(() => {
@@ -42,7 +46,9 @@ const CollectUserInformation = props => {
           })
         }
         else {
-          props.updateUserSessionValue(inputPseudo, inputName, isNewAccount);
+          props.updateUserSessionValue(inputPseudo, inputName, isNewAccount, level).then(
+              () => props.nextLevelFunc(true)
+          );
           setDisplayLoaderSave(false);
         }
       }
@@ -53,7 +59,9 @@ const CollectUserInformation = props => {
     }
     else {
       setDisplayLoaderCancel(true);
-      props.updateUserSessionValue(inputPseudo, inputName, isNewAccount);
+      props.updateUserSessionValue(inputPseudo, inputName, isNewAccount, level).then(
+          () => props.nextLevelFunc(true)
+      );
       setDisplayLoaderCancel(false);
     }
   };
@@ -148,7 +156,11 @@ const CollectUserInformation = props => {
 CollectUserInformation.propTypes = {
   userName: PropTypes.string.isRequired,
   userPseudo: PropTypes.string.isRequired,
+  spentTime: PropTypes.number.isRequired,
+  levelScore: PropTypes.number.isRequired,
+  levelNumber: PropTypes.number.isRequired,
   isUserGenerated: PropTypes.bool.isRequired,
+  nextLevelFunc: PropTypes.func.isRequired,
   updateUserSessionValue: PropTypes.func.isRequired,
 };
 

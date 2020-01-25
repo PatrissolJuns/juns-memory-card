@@ -93,12 +93,13 @@ export const isUserExist = userPseudo => {
   });
 };
 
-export const updateUserStats = (userPseudo, newDate) => {
+export const updateUserStats = (userPseudo, newData) => {
   return new Promise((resolve, reject) => {
+    console.log('[updateUserStats] newData = ',newData);
     // WE DO NOT MODIFY DIRECTLY THE STATE SO FOR THAT EACH WE OVERWRITE DIRECTLY ALL THE DATA
     db.collection(COLLECTION_STATISTICS_NAME)
       .doc(userPseudo)
-      .update(newDate)
+      .set(newData)
       .then(() => resolve(true))
       .catch(() => reject(false));
   });
@@ -121,7 +122,7 @@ export const getGlobalStats = () => {
   });
 };
 
-export const sortLevels = levels => levels.sort((a, b) => b.levelScore - a.levelScore);
+export const sortLevels = levels => levels.sort((a, b) => a.levelNumber - b.levelNumber);
 
 export const updateOrCreateUserLevel = (oldData, difficulty, level) => {
   const newCopy = JSON.parse(JSON.stringify(oldData));
@@ -210,7 +211,7 @@ export const generateUserSessionValue = () => {
   return false;
 };
 
-export const updateUserSessionValue = (userName, userPseudo, isUserGenerated = false) => {
+export const updateUserSessionValue = (userPseudo, userName, isUserGenerated = false) => {
   if(isUserSessionValueExist()){
     localStorage.setItem('userName', userName);
     localStorage.setItem('userPseudo', userPseudo);

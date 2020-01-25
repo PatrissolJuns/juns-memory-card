@@ -12,7 +12,13 @@ import {
   Redirect
 } from "react-router-dom";
 import MainComponent from "./Components/MainComponent/MainComponent";
-import {generateUserSessionValue, getUserSessionValue} from "./Others/firebase/database-utilities";
+import {
+  createUserStat,
+  generateUserSessionValue, getStatsByPseudo,
+  getUserSessionValue, updateOrCreateUserLevel,
+  updateUserSessionValue, updateUserStats
+} from "./Others/firebase/database-utilities";
+import {MEDIUM} from "./Others/constants";
 
 class App extends Component {
 
@@ -25,14 +31,71 @@ class App extends Component {
     this.state = {
       ...userSessionValue,
       theme: Theme.onePiece,
+      difficulty: MEDIUM,
     }
   }
 
-  updateUserSessionValue = (newPseudo, newName, isNewAccount) => {
-    console.log('[APP.JS]:: INSIDE updateUserSessionValue');
-    console.log('newPseudo = ',newPseudo);
-    console.log('newName = ',newName);
-    console.log('isNewAccount = ',isNewAccount);
+  componentDidMount() {
+    /*getStatsByPseudo('test').then(
+        (data) => {
+          console.log('DATA TEST_JUNS = ',data);
+
+          const level = {levelNumber: 1, levelScore: 678, time: 12};
+          const level2 = {levelNumber: 3, levelScore: 6780, time: 12};
+          const level3 = {levelNumber: 2, levelScore: 4424, time: 14};
+          const level4 = {levelNumber: 1, levelScore: 1020, time: 14};
+
+          const newData = updateOrCreateUserLevel(data, this.state.difficulty, level);
+
+          console.log('newData TEST_JUNS = ',newData);
+
+          const newData2 = updateOrCreateUserLevel(newData, this.state.difficulty, level2);
+          console.log('newData2 TEST_JUNS = ',newData2);
+
+          const newData3 = updateOrCreateUserLevel(newData2, this.state.difficulty, level3);
+          console.log('newData3 TEST_JUNS = ',newData3);
+
+          const newData4 = updateOrCreateUserLevel(newData3, this.state.difficulty, level4);
+          console.log('newData4 TEST_JUNS = ',newData4);
+
+
+
+
+        }
+    )*/
+  }
+
+  updateUserSessionValue = (newPseudo, newName, isNewAccount, level) => {
+    return new Promise((resolve, reject) => {
+      // Step 1: Update the value of the session
+      updateUserSessionValue(newPseudo, newName, false);
+
+      // Step 2: Update the state
+      this.setState((prevState) => ({
+        userPseudo: newPseudo,
+        userName: newName,
+        isUserGenerated: false
+      }), () => {
+        if(isNewAccount) {
+          const data = updateOrCreateUserLevel({name: newName, levels: {}}, this.state.difficulty, level);
+          console.log('isNewAccount data = ', data);
+          createUserStat(newPseudo, data)
+              .then(() => resolve(true))
+              .catch(() => reject(false));
+        }
+        else {
+          getStatsByPseudo(newPseudo).then(
+              (stats) => {
+                const data = updateOrCreateUserLevel(stats, this.state.difficulty, level);
+                console.log('updateOrCreateUserLevel data = ', data);
+                updateUserStats(newPseudo, data)
+                    .then(() => resolve(true))
+                    .catch(() => reject(false));
+              }
+          )
+        }
+      });
+    });
   };
 
   render() {

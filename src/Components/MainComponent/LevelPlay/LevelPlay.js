@@ -136,11 +136,6 @@ class LevelPlay extends Component {
 
                   const levelScore = getLevelScore(score, timeBonus);
 
-                  console.log('timerBonus = ', timerBonus);
-                  console.log('score = ', score);
-                  console.log('timeBonus = ', timeBonus);
-                  console.log('levelScore = ', levelScore);
-
                   this.setState(
                       (prevState) =>({
                         timeBonus: timeBonus,
@@ -216,6 +211,7 @@ class LevelPlay extends Component {
                     levelScore={this.state.levelScore}
                     clickedTime={this.state.clickedTime}
                     nextLevelLink={this.getNextLevelLink()}
+                    levelNumber={this.props.id}
                     userName={this.props.userName}
                     userPseudo={this.props.userPseudo}
                     isUserGenerated={this.props.isUserGenerated}

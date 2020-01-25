@@ -62,4 +62,163 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+
+}
+
+
+.high-score {
+
+  .img-box {
+    position: absolute;
+    background-color: #d2ab55;
+    height: 100%;
+    border: 1px solid #c69747;
+    border-radius: 15px;
+  }
+
+  .text-box {
+    z-index: 400 !important;
+    position: absolute;
+    top: 0;
+    color: white !important;
+    margin-left: 25%;
+    height: 100%;
+    width: 50%;
+    width: 90%;
+    margin-left: 0;
+
+    span.small-bar {
+      width: 50%;
+      border-color: #1a0905;
+    }
+
+    h4, p {
+      color: #1a0905 !important;
+      font-weight: bold;
+      font-size: 19px !important;
+      padding: 0 !important;
+      text-align: center !important;
+      font-family: 'monospace';
+    }
+
+    h4 {
+
+    }
+    .display-time, .display-score {
+      font-size: 15px !important;
+    }
+
+    .display-time {
+
+    }
+
+    .display-score {
+
+    }
+  }
+}
+
+
+
+.Leaderboard{
+  padding: 40px 20px;
+  margin: auto;
+  max-width: 800px;
+}
+.leader-wrap {
+  display: flex;
+}
+
+.leader{
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  animation-name: revealLeaders;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.leader-ava {
+  padding: 8px;
+  margin-right: 16px;
+  position: relative;
+}
+
+.leader-name {
+  color: #1a0905 !important;
+  font-weight: bold;
+  font-size: 15px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-family: 'monospace';
+}
+
+.leader-score {
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.leader-score svg, .leader-score i{
+  display: block;
+  margin-right: 4px;
+  color: black;
+}
+
+.leader-score_title{
+  line-height: 1;
+  color: #1a0905 !important;
+  font-weight: bold;
+  font-size: 15px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-family: 'monospace';
+}
+
+.leader-ava::after{
+  content: "";
+  left: 0;
+  bottom: 0;
+  display: block;
+  height: 6px;
+  position: absolute;
+  border: 20px solid transparent;
+  border-top-width: 0px;
+  border-bottom: 6px #fff;
+  transition: border-bottom-color .2s ease-in-out;
+}
+
+.leader-bar {
+  margin-top: 8px;
+  animation-name: barLoad;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.6, 0.2, 0.1, 1);
+  transform-origin: left;
+}
+
+.bar {
+  height: 4px;
+  border-radius: 2px;
+}
+
+@keyframes revealLeaders{
+  from{
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to{
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes barLoad{
+  from{
+    transform: scaleX(0);
+  }
+  to{
+    transform: scaleX(1)
+  }
 }

@@ -27,6 +27,7 @@ export const WON_IMG = "https://i.postimg.cc/6Qyw9sX8/a186a8d8e1f7b380778c05a6d1
 export const NEXT_IMG = "https://i.postimg.cc/hjJKSkVC/emoji-star-burned.png";
 export const RETRY_IMG = "https://i.postimg.cc/tgwbJrq2/emoji-retry-full-removebg-preview.png";
 export const LOST_IMG = "https://i.postimg.cc/90qKSVyh/emoji-crying-burned-1.png";
+export const GOLD_IMG = "https://i.postimg.cc/vZ9zGYzS/gold-removebg-preview.png";
 
 export const Theme = {
   'onePiece' : {
