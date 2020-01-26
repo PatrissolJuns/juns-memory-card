@@ -1,12 +1,13 @@
 import firebase from './Firebase';
 import {COLLECTION_STATISTICS_NAME} from "../config";
 import {getRandomNumber} from "../../Components/utilities";
+import {MEDIUM} from "../constants";
 
 const db = firebase.firestore();
 
 const sampleStats = [
   {
-    userName: 'juns',
+    name: 'descartes',
     levels: {
       medium: [
         {levelNumber: 1, levelScore: 452, time: 10},
@@ -18,7 +19,7 @@ const sampleStats = [
     }
   },
   {
-    userName: 'name_1234',
+    name: 'name_1234',
     levels: {
       medium: [
         {levelNumber: 1, levelScore: 678, time: 12},
@@ -95,7 +96,6 @@ export const isUserExist = userPseudo => {
 
 export const updateUserStats = (userPseudo, newData) => {
   return new Promise((resolve, reject) => {
-    console.log('[updateUserStats] newData = ',newData);
     // WE DO NOT MODIFY DIRECTLY THE STATE SO FOR THAT EACH WE OVERWRITE DIRECTLY ALL THE DATA
     db.collection(COLLECTION_STATISTICS_NAME)
       .doc(userPseudo)
@@ -113,7 +113,6 @@ export const getGlobalStats = () => {
         let stats = {};
         querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
           stats[doc.id] = doc.data();
         });
         return resolve(stats);
@@ -122,14 +121,16 @@ export const getGlobalStats = () => {
   });
 };
 
-
+export const parseDifficulty = difficulty => {
+  let tmp = difficulty.toLowerCase().split('');
+  tmp[0] = tmp[0].toUpperCase();
+  return tmp.join('');
+};
 
 export const getHighScoreOfLevel = (levelNumber, difficulty) => {
   return new Promise((resolve, reject) => {
     getGlobalStats().then(
         (stats) => {
-          console.log("stats = ",stats);
-
           const newData = [];
 
           for (let key in stats) {
@@ -146,11 +147,9 @@ export const getHighScoreOfLevel = (levelNumber, difficulty) => {
             }
           }
 
-          console.log('newData = ', newData);
-
           const finalResult = newData.sort((a, b) => b.levelScore - a.levelScore);
 
-          console.log('finalResult = ', finalResult);
+          // console.log('finalResult = ', finalResult);
           resolve(finalResult);
         }
     ).catch(error => reject(error));
@@ -158,7 +157,40 @@ export const getHighScoreOfLevel = (levelNumber, difficulty) => {
 
 };
 
-getHighScoreOfLevel(1, 'Medium');
+export const getGlobalHighScoreOfLevel = (difficulty) => {
+  return new Promise((resolve, reject) => {
+    getGlobalStats().then(
+        (stats) => {
+          const newData = [];
+
+          for (let key in stats) {
+            if((stats[key].hasOwnProperty('levels'))) {
+              if(stats[key]['levels'].hasOwnProperty(difficulty)) {
+                // console.log("key => ",key, " stats => ",stats[key]);
+                // console.log('stats[key][\'levels\'][difficulty] = ',stats[key]['levels'][difficulty]);
+                stats[key]['levels'][difficulty].forEach(level => {
+                  if(!newData[level.levelNumber]) newData[level.levelNumber] = [];
+                  newData[level.levelNumber].push({
+                    pseudo: key,
+                    levelNumber: level.levelNumber,
+                    // name: stats[key]['name'],
+                    levelScore: level ? level.levelScore : 0,
+                    time: level ? level.time : 0,
+                  });
+                })
+              }
+            }
+          }
+          const finalResult = newData.map(levelData =>levelData.sort((a, b) => b.levelScore - a.levelScore));
+
+          resolve(finalResult.slice(1));
+        }
+    ).catch(error => reject(error));
+  })
+};
+
+// getHighScoreOfLevel(1, 'medium');
+// getGlobalHighScoreOfLevel('medium');
 
 
 export const sortLevels = levels => levels.sort((a, b) => a.levelNumber - b.levelNumber);

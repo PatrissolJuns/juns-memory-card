@@ -131,7 +131,7 @@ const CollectUserInformation = props => {
                           className="send_btn"
                       >Save and continue
                         {
-                          displayLoaderSave ? <i className="fa fa-refresh fa-spin ml-2"> </i> : null
+                          displayLoaderSave ? <i className="fa fa-refresh fa-spin fa-spinner ml-2"> </i> : null
                         }
                       </button>
                       <button
@@ -139,7 +139,7 @@ const CollectUserInformation = props => {
                           className="send_btn cancel"
                       >Cancel and continue
                         {
-                          displayLoaderCancel ? <i className="fa fa-refresh fa-spin ml-2"> </i> : null
+                          displayLoaderCancel ? <i className="fa fa-refresh fa-spin fa-spinner ml-2"> </i> : null
                         }
                       </button>
                     </div>

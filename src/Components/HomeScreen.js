@@ -8,10 +8,10 @@ const HomeScreen = (props) => {
       <JMCSection classStyle={' '} marginTop={"mt-5"} {...props}>
         <div className="col-md-12 mt-3">
           <ul className="jmc-home-list">
-            <li><Link to="/level-list"><JMCLink link={"level-list"} textLink={"Play"} /></Link></li>
-            <li><Link to="/instructions"><JMCLink link={"instructions"} textLink={"Instructions"} /></Link></li>
-            <li><Link to="/statistics"><JMCLink link={"statistics"} textLink={"Statistics"} /></Link></li>
-            <li><Link to="/settings"><JMCLink link={"settings"} textLink={"Settings"} /></Link></li>
+            <li><JMCLink link={"level-list"} textLink={"Play"} /></li>
+            <li><JMCLink link={"instructions"} textLink={"Instructions"} /></li>
+            <li><JMCLink link={"statistics"} textLink={"Statistics"} /></li>
+            <li><JMCLink link={"settings"} textLink={"Settings"} /></li>
           </ul>
         </div>
       </JMCSection>

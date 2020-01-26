@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const JMCSection = ({
-                      classStyle = 'jmc-end-of-level',
+                      classStyle = '',
                       positionChildren = 'justify-content-center',
                       marginTop = '',
                       ...props}) => {

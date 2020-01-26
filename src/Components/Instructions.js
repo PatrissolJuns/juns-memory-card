@@ -7,7 +7,7 @@ import JMCLink from "./UIElements/JMCLink";
 const Instructions = (props) => {
   return (
       <div className={"instructions"}>
-        <JMCSection marginTop={"mt-5"} {...props}>
+        <JMCSection classStyle={"jmc-end-of-level"} marginTop={"mt-5"} {...props}>
           <div className="col-md-12 result-title">
             <JMCTitle title={"Instructions"} />
           </div>

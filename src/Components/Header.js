@@ -36,9 +36,13 @@ class Header extends Component {
                               <a href="Javascript:void(0)">Login</a>
                             </li>*/}
                             <li>
-                              <button type="button" id="sidebarCollapse">
+                              <a href={"/"} type="button" id="sidebarCollapse">
+                                <i className="fa fa-home fa-2x"> </i>
+                              </a>
+                              {/*<button type="button" id="sidebarCollapse">
                                 <img src={MenuIcon} alt="#"/>
                               </button>
+                              */}
                             </li>
                           </ul>
                         </div>

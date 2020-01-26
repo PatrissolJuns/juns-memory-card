@@ -58,6 +58,8 @@ body {
   line-height: 1.80857;
   font-weight: normal;
   overflow-x: hidden;
+  max-height: 100vh;
+  overflow-y: hidden;
 }
 
 a {
@@ -435,4 +437,62 @@ button {
 
 .instructions-item p {
   padding: 0 0 0 30px !important;
+}
+
+.pos-relative {
+  position: relative !important;
+}
+
+.w-h-300 {
+  height: 300px !important;
+  width: 300px !important;
+}
+
+.jmc-global-stats {
+  &.jmc-level-item {
+    cursor: auto !important;
+  }
+
+  .high-score .text-box h4, .high-score .text-box p {
+    font-size: 15px !important;
+  }
+}
+
+.big-loader {
+  z-index: 404;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  color: white;
+}
+
+.network {
+  position: absolute;
+  height: 100vh !important;
+  width: 100vw !important;
+
+  .jmc-section-content {
+    height: 100vh !important;
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .jmc-section .test_box p {
+    text-align: center !important;
+  }
+
+  .jmc-end-of-level {
+    top: 0 !important;
+    margin-top: 0 !important;
+
+    & > .container {
+      margin: 0 !important;
+    }
+  }
+
+
 }

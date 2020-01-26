@@ -50,7 +50,7 @@ const EndOfLevel = ({
   ];
 
   const getHighScore = () => {
-    getHighScoreOfLevel(levelNumber, 'Medium').then(
+    getHighScoreOfLevel(levelNumber, 'medium').then(
         (data) => {
           setLeaderBoard(data);
           setDisplayLeaderBoard(true);
@@ -147,42 +147,6 @@ const EndOfLevel = ({
                   ? <div className="col-md-6 high-score">
                       <div className="test_box text-box">
                         <h4 className={"mb-2 mt-2"}> <i className="fa fa-trophy mr-2"> </i> High Scores</h4>
-
-                        {/*<div className={"row justify-content-center align-items-center mb-3"}>
-                    <p className={"col-2 p-0"}><i style={{color: "#c22315"}} className="fa fa-medal"></i></p>
-                    <p className={"col-1 p-0"}>1.</p>
-                    <div className={"col-9"}>
-                      <div className="row justify-content-center">
-                        <p className={"col-12"}>AAA</p>
-                        <p className={"col-6 display-score"}><i className="fa fa-coins"></i>875</p>
-                        <p className={"col-6 display-time"}><i className="fa fa-clock"></i>35</p>
-                      </div>
-                    </div>
-                  </div>
-                  <span className="small-bar"> </span>
-                  <div className={"row justify-content-center align-items-center mb-3"}>
-                    <p className={"col-2 p-0"}> </p>
-                    <p className={"col-1 p-0"}>2.</p>
-                    <div className={"col-9"}>
-                      <div className="row justify-content-center">
-                        <p className={"col-12"}>BBB</p>
-                        <p className={"col-6 display-score"}><i className="fa fa-coins"> </i>343</p>
-                        <p className={"col-6 display-time"}><i className="fa fa-clock"> </i>35</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={"row justify-content-center align-items-center mb-3"}>
-                    <p className={"col-2 p-0"}> </p>
-                    <p className={"col-1 p-0"}>3.</p>
-                    <div className={"col-9"}>
-                      <div className="row justify-content-center">
-                        <p className={"col-12"}>CCC</p>
-                        <p className={"col-6 display-score"}><i className="fa fa-coins"> </i>343</p>
-                        <p className={"col-6 display-time"}><i className="fa fa-clock"> </i>35</p>
-                      </div>
-                    </div>
-                  </div>*/}
-
                         <LeaderBoard data={leaderBoard}/>
                       </div>
                     </div>

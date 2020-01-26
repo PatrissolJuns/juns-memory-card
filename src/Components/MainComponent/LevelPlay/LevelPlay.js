@@ -34,10 +34,10 @@ class LevelPlay extends Component {
       timeBonus: 0,
       levelScore: 0,
       clickedTime: 0,
-      // decision: FAILED,
-      // displayResult: false
-      decision: SUCCEED,
-      displayResult: true
+      decision: FAILED,
+      displayResult: false
+      // decision: SUCCEED,
+      // displayResult: true
     }
   }
 

@@ -12,6 +12,9 @@ import {
   Redirect
 } from "react-router-dom";
 import MainComponent from "./Components/MainComponent/MainComponent";
+import { Offline, Online } from "react-detect-offline";
+
+
 import {
   createUserStat,
   generateUserSessionValue, getStatsByPseudo,
@@ -20,6 +23,8 @@ import {
 } from "./Others/firebase/database-utilities";
 import {MEDIUM} from "./Others/constants";
 import Instructions from "./Components/Instructions";
+import GlobalStatistic from "./Components/GlobalStatistic";
+import OfflineMode from "./Components/OfflineMode";
 
 class App extends Component {
 
@@ -104,6 +109,9 @@ class App extends Component {
         <>
           <ThemeContext.Provider value={this.state.theme}>
             <Header />
+            <Offline>
+              <OfflineMode />
+            </Offline>
             <JMCContainer>
               <Router>
                 <Switch>
@@ -113,6 +121,9 @@ class App extends Component {
                   </Route>
                   <Route exact path="/instructions">
                     <Instructions />
+                  </Route>
+                  <Route exact path="/statistics">
+                    <GlobalStatistic  userPseudo={this.state.userPseudo}/>
                   </Route>
                   <Route path="/level-list">
                     <MainComponent

@@ -60,13 +60,13 @@ const LevelList = props => {
                   <Slide tag="a" index={3}>{levelTmp(props.levelList, isPlayAble)[3]}</Slide>*/}
                 </Slider>
                 <ButtonBack>
-                  <a className="jmc-arrow jmc-arrow-prev right-100" href="javascript: void(0)">
-                    <i className="fa fa-long-arrow-left"></i>
+                  <a className="jmc-arrow jmc-arrow-prev right-100">
+                    <i className="fa fa-arrow-left"> </i>
                   </a>
                 </ButtonBack>
                 <ButtonNext>
-                  <a className="jmc-arrow jmc-arrow-next left-100" href="javascript: void(0)">
-                    <i className="fa fa-long-arrow-right"></i>
+                  <a className="jmc-arrow jmc-arrow-next left-100">
+                    <i className="fa fa-arrow-right"> </i>
                   </a>
                 </ButtonNext>
               </CarouselProvider>
