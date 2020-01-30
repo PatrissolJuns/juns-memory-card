@@ -90,7 +90,7 @@ const CollectUserInformation = props => {
                     <input
                         onChange={(event) => inputHandler(event, 'userName')}
                         className="form_control"
-                        placeholder={props.userName}
+                        placeholder={"Your name"}
                         type="text"
                         name="Name"
                     />
@@ -104,7 +104,7 @@ const CollectUserInformation = props => {
                     <input
                         onChange={(event) => inputHandler(event, 'userPseudo')}
                         className="form_control"
-                        placeholder={props.userPseudo}
+                        placeholder={"Your pseudo"}
                         type="text"
                         name="Pseudo"
                     />

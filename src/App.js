@@ -25,6 +25,8 @@ import {MEDIUM} from "./Others/constants";
 import Instructions from "./Components/Instructions";
 import GlobalStatistic from "./Components/GlobalStatistic";
 import OfflineMode from "./Components/OfflineMode";
+import Credit from "./Components/Credit";
+import Setting from "./Components/Setting";
 
 class App extends Component {
 
@@ -84,7 +86,7 @@ class App extends Component {
       }), () => {
         if(isNewAccount) {
           const data = updateOrCreateUserLevel({name: newName, levels: {}}, this.state.difficulty, level);
-          console.log('isNewAccount data = ', data);
+          // console.log('isNewAccount data = ', data);
           createUserStat(newPseudo, data)
               .then(() => resolve(true))
               .catch(() => reject(false));
@@ -93,7 +95,7 @@ class App extends Component {
           getStatsByPseudo(newPseudo).then(
               (stats) => {
                 const data = updateOrCreateUserLevel(stats, this.state.difficulty, level);
-                console.log('updateOrCreateUserLevel data = ', data);
+                // console.log('updateOrCreateUserLevel data = ', data);
                 updateUserStats(newPseudo, data)
                     .then(() => resolve(true))
                     .catch(() => reject(false));
@@ -109,9 +111,9 @@ class App extends Component {
         <>
           <ThemeContext.Provider value={this.state.theme}>
             <Header />
-            <Offline>
-              <OfflineMode />
-            </Offline>
+            {/*<Offline>*/}
+            {/*  <OfflineMode />*/}
+            {/*</Offline>*/}
             <JMCContainer>
               <Router>
                 <Switch>
@@ -124,6 +126,12 @@ class App extends Component {
                   </Route>
                   <Route exact path="/statistics">
                     <GlobalStatistic  userPseudo={this.state.userPseudo}/>
+                  </Route>
+                  <Route exact path="/credits">
+                    <Credit />
+                  </Route>
+                  <Route exact path="/settings">
+                    <Setting />
                   </Route>
                   <Route path="/level-list">
                     <MainComponent

@@ -12,6 +12,7 @@ const HomeScreen = (props) => {
             <li><JMCLink link={"instructions"} textLink={"Instructions"} /></li>
             <li><JMCLink link={"statistics"} textLink={"Statistics"} /></li>
             <li><JMCLink link={"settings"} textLink={"Settings"} /></li>
+            <li><JMCLink link={"credits"} textLink={"Credits"} /></li>
           </ul>
         </div>
       </JMCSection>
