@@ -16,6 +16,7 @@ import {
 } from "../../utilities";
 import {levels} from "../../../Others/data";
 import {FAILED, StatusType, SUCCEED} from "../../../Others/constants";
+import {getStatsByPseudo} from "../../../Others/firebase/database-utilities";
 
 class LevelPlay extends Component {
 
@@ -35,11 +36,15 @@ class LevelPlay extends Component {
       clickedTime: 0,
       decision: FAILED,
       displayResult: false
+      // decision: SUCCEED,
+      // displayResult: true
     }
   }
 
   componentDidMount() {
-
+    /*getStatsByPseudo('JUq').then(
+        data => console.log('data => ',data)
+    ).catch(error => console.log('error => ',error));*/
     this.timerID = setInterval(
         () => this.updateTimer(),
         1000
@@ -131,11 +136,6 @@ class LevelPlay extends Component {
 
                   const levelScore = getLevelScore(score, timeBonus);
 
-                  console.log('timerBonus = ', timerBonus);
-                  console.log('score = ', score);
-                  console.log('timeBonus = ', timeBonus);
-                  console.log('levelScore = ', levelScore);
-
                   this.setState(
                       (prevState) =>({
                         timeBonus: timeBonus,
@@ -211,6 +211,11 @@ class LevelPlay extends Component {
                     levelScore={this.state.levelScore}
                     clickedTime={this.state.clickedTime}
                     nextLevelLink={this.getNextLevelLink()}
+                    levelNumber={this.props.id}
+                    userName={this.props.userName}
+                    userPseudo={this.props.userPseudo}
+                    isUserGenerated={this.props.isUserGenerated}
+                    updateUserSessionValue={this.props.updateUserSessionValue}
                 />
                 : null
           }
@@ -227,6 +232,10 @@ LevelPlay.propTypes = {
   status: PropTypes.oneOf([...StatusType]),
   data: PropTypes.arrayOf(PropTypes.string).isRequired,
   timer: PropTypes.number.isRequired,
+  userName: PropTypes.string.isRequired,
+  userPseudo: PropTypes.string.isRequired,
+  isUserGenerated: PropTypes.bool.isRequired,
+  updateUserSessionValue: PropTypes.func.isRequired,
 };
 
 export default LevelPlay;

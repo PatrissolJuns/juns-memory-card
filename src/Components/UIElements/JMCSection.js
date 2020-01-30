@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const JMCSection = ({
+                      classStyle = '',
                       positionChildren = 'justify-content-center',
                       marginTop = '',
                       ...props}) => {
   return (
-      <div {...props} className={`jmc-section ${marginTop}`}>
+      <div {...props} className={`jmc-section ${marginTop} ${classStyle}`}>
         <div className="container">
           <div className="jmc-section-content">
             <div className={`row d_flex ${positionChildren}`}>

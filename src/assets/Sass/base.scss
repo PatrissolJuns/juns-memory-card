@@ -58,6 +58,9 @@ body {
   line-height: 1.80857;
   font-weight: normal;
   overflow-x: hidden;
+  max-height: 100vh;
+  overflow-y: hidden;
+  min-width: 1100px !important;
 }
 
 a {
@@ -301,6 +304,37 @@ button {
   transition: 400ms;
 }
 
+.form_main {
+  .form_control {
+    border: inherit;
+    border-bottom: #ddd solid 1px;
+    background-color: transparent;
+    font-size: 17px;
+    margin-bottom: 30px;
+    border-radius: inherit;
+    padding-bottom: 10px;
+    color: #f9fcfd;
+    width: 100%;
+  }
+
+  .send_btn {
+    font-size: 17px;
+    border: #fff solid 2px;
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 60px;
+    border-radius: 35px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+}
 
 .jmc-arrow {
   position: absolute;
@@ -338,7 +372,8 @@ button {
 }
 
 .max-width {
-  max-width: 1000px;
+  //max-width: 1000px;
+  max-width: $container-max-width;
 }
 
 /*.min-height {
@@ -382,24 +417,101 @@ button {
   }
 }
 
-.jmc-sidebar {
-  position: absolute;
-  left: 0;
-  padding: 10px;
-  background: #451608;
-  z-index: 100;
-  height: 100%;
-  color: #f4e27a;
+.jmc-card-list {
+  padding-left: $sidebar-width + 50px;
   padding-top: 20px;
-  width: 150px;
+}
 
-  p {
-    font-size: large;
-    margin: 10px;
+.small-bar {
+  border: #f0e7b5 solid 1px;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.instructions .jmc-end-of-level {
+  position: relative !important;
+  top: -80px !important;
+}
+
+.instructions-item p {
+  padding: 0 0 0 30px !important;
+}
+
+.pos-relative {
+  position: relative !important;
+}
+
+.w-h-300 {
+  height: 300px !important;
+  width: 300px !important;
+}
+
+.jmc-global-stats {
+  &.jmc-level-item {
+    cursor: auto !important;
+  }
+
+  .high-score .text-box h4, .high-score .text-box p {
+    font-size: 15px !important;
   }
 }
 
-.jmc-card-list {
-  padding-left: 150px;
-  padding-top: 20px;
+.big-loader {
+  z-index: 404;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  color: white;
+}
+
+.network {
+  position: absolute;
+  height: 100vh !important;
+  width: 100vw !important;
+
+  .jmc-section-content {
+    height: 100vh !important;
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .jmc-section .test_box p {
+    text-align: center !important;
+  }
+
+  .jmc-end-of-level {
+    top: 0 !important;
+    margin-top: 0 !important;
+
+    & > .container {
+      margin: 0 !important;
+    }
+  }
+
+
+}
+
+.other-info {
+  p {
+
+    text-align: center !important;
+  }
+
+  .instructions-item {
+    padding-left: 30%;
+    p {
+      text-align: left !important;
+    }
+    img {
+      height: 16px;
+      width: 16px;
+    }
+  }
 }
